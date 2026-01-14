@@ -23,7 +23,7 @@
             position: relative;
         }
         
-        /* ===== ANNOUNCEMENT BAR - PERFECT LOOP ===== */
+        /* ===== ANNOUNCEMENT BAR ===== */
         .announcement-bar {
             background: #000;
             color: #fff;
@@ -89,121 +89,11 @@
             letter-spacing: -0.5px;
         }
         
-        /* ===== MOBILE MENU - FIXED ===== */
-        .menu-toggle {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            width: 24px;
-            height: 24px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            z-index: 1002;
-            position: relative;
-        }
-        
-        .menu-toggle span {
-            width: 100%;
-            height: 2px;
-            background: #000;
-            transition: 0.3s;
-            transform-origin: center;
-            position: absolute;
-            left: 0;
-        }
-        
-        .menu-toggle span:nth-child(1) {
-            top: 4px;
-        }
-        
-        .menu-toggle span:nth-child(2) {
-            top: 11px;
-        }
-        
-        .menu-toggle span:nth-child(3) {
-            top: 18px;
-        }
-        
-        .menu-toggle.active span:nth-child(1) {
-            transform: rotate(45deg);
-            top: 11px;
-        }
-        
-        .menu-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .menu-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg);
-            top: 11px;
-        }
-        
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            right: -280px;
-            width: 280px;
-            height: 100vh;
-            background: #fff;
-            z-index: 1002;
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 70px 24px 24px;
-            box-shadow: -2px 0 20px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-        
-        .mobile-menu.active {
-            right: 0;
-        }
-        
-        .mobile-nav {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        
-        .mobile-nav li {
-            margin-bottom: 4px;
-        }
-        
-        .mobile-nav a {
-            display: block;
-            padding: 12px 16px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #000;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background 0.2s;
-        }
-        
-        .mobile-nav a:active {
-            background: #f5f5f5;
-        }
-        
-        .mobile-menu-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 24px;
-            height: 24px;
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
         /* ===== MAIN NAV ===== */
         .main-nav {
             display: none;
             gap: 24px;
+            align-items: center;
         }
         
         .nav-link {
@@ -228,6 +118,47 @@
         
         .nav-link:hover::after {
             width: 100%;
+        }
+        
+        /* ===== BOTTOM NAVIGATION BAR ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #fff;
+            border-top: 1px solid #e8e8e8;
+            z-index: 999;
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            display: none;
+        }
+        
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #666;
+            font-size: 10px;
+            font-weight: 600;
+            flex: 1;
+            padding: 8px 0;
+        }
+        
+        .nav-item.active {
+            color: #000;
+        }
+        
+        .nav-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         /* ===== HEADER ACTIONS ===== */
@@ -281,6 +212,70 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+        
+        /* ===== USER MENU ===== */
+        .user-menu {
+            position: relative;
+        }
+        
+        .user-btn {
+            background: #000;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-width: 200px;
+            display: none;
+            z-index: 1001;
+            margin-top: 8px;
+        }
+        
+        .user-dropdown.active {
+            display: block;
+        }
+        
+        .dropdown-item {
+            display: block;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid #f5f5f5;
+            transition: background 0.2s;
+        }
+        
+        .dropdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-item:hover {
+            background: #f9f9f9;
+        }
+        
+        .user-email {
+            padding: 12px 16px;
+            font-size: 13px;
+            color: #666;
+            border-bottom: 1px solid #f5f5f5;
+            font-weight: 500;
         }
         
         /* ===== HERO ===== */
@@ -347,7 +342,7 @@
             border: 1.5px solid #000;
         }
         
-        /* ===== PRODUCTS SECTION - SHOW IMMEDIATELY ===== */
+        /* ===== PRODUCTS SECTION ===== */
         .products-section {
             padding: 60px 20px;
             max-width: 1200px;
@@ -410,6 +405,85 @@
             color: #000;
         }
         
+        /* ===== BULK DISCOUNT BADGE ===== */
+        .discount-badge {
+            background: #000;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 4px;
+            margin-top: 8px;
+            display: inline-block;
+        }
+        
+        /* ===== AUTH MODAL ===== */
+        .auth-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2003;
+            padding: 20px;
+        }
+        
+        .auth-modal.active {
+            display: flex;
+        }
+        
+        .auth-content {
+            background: #fff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            animation: modalIn 0.3s ease-out;
+        }
+        
+        @keyframes modalIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .auth-tab {
+            flex: 1;
+            padding: 20px;
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 700;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .auth-tab.active {
+            color: #000;
+            border-bottom: 2px solid #000;
+        }
+        
+        .auth-body {
+            padding: 30px;
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
         /* ===== PRODUCT MODAL ===== */
         .modal-overlay {
             position: fixed;
@@ -436,12 +510,7 @@
             border-radius: 12px;
             overflow: hidden;
             position: relative;
-            animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        @keyframes modalIn {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
+            animation: modalIn 0.3s ease-out;
         }
         
         .modal-close {
@@ -572,7 +641,7 @@
             gap: 12px;
         }
         
-        /* ===== CART - FIXED TO LOOK LIKE PRODUCT MODAL ===== */
+        /* ===== CART ===== */
         .cart-overlay {
             position: fixed;
             top: 0;
@@ -596,7 +665,7 @@
             height: 100vh;
             background: #fff;
             z-index: 2000;
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: right 0.3s ease;
             display: flex;
             flex-direction: column;
         }
@@ -645,7 +714,6 @@
             color: #999;
         }
         
-        /* Cart Item - Fixed to look like product modal */
         .cart-item {
             background: #fff;
             border-radius: 12px;
@@ -782,6 +850,11 @@
             font-size: 14px;
         }
         
+        .summary-row.discount {
+            color: #4cd964;
+            font-weight: 600;
+        }
+        
         .summary-row.total {
             font-weight: 700;
             font-size: 16px;
@@ -790,7 +863,7 @@
             border-top: 1px solid #ddd;
         }
         
-        /* ===== CHECKOUT - ENHANCED ===== */
+        /* ===== CHECKOUT - UPDATED WITH SHIPPING OPTIONS ===== */
         .checkout-modal {
             position: fixed;
             top: 0;
@@ -817,7 +890,7 @@
             overflow: hidden;
             max-height: 85vh;
             overflow-y: auto;
-            animation: modalIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: modalIn 0.3s ease-out;
         }
         
         .checkout-header {
@@ -948,197 +1021,163 @@
             border-color: #000;
         }
         
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
+        /* ===== SHIPPING OPTIONS ===== */
+        .shipping-options {
+            margin-bottom: 24px;
         }
         
-        /* Payment Form */
-        #card-element {
-            padding: 12px;
+        .shipping-option {
+            display: flex;
+            align-items: center;
+            padding: 16px;
             border: 1.5px solid #ddd;
             border-radius: 8px;
-            margin-bottom: 16px;
-        }
-        
-        #card-errors {
-            color: #ff3b30;
-            font-size: 12px;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-        
-        .order-summary {
-            background: #f8f8f8;
-            padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        
-        .checkout-actions {
-            display: flex;
-            gap: 12px;
-            margin-top: 24px;
-        }
-        
-        /* ===== ORDERS SECTION ===== */
-        .orders-section {
-            padding: 60px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: none;
-        }
-        
-        .orders-section.active {
-            display: block;
-        }
-        
-        .orders-tabs {
-            display: flex;
-            border-bottom: 2px solid #e8e8e8;
-            margin-bottom: 30px;
-        }
-        
-        .orders-tab {
-            padding: 12px 24px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #666;
-            background: none;
-            border: none;
+            margin-bottom: 12px;
             cursor: pointer;
-            position: relative;
+            transition: all 0.2s;
         }
         
-        .orders-tab.active {
-            color: #000;
+        .shipping-option.selected {
+            border-color: #000;
+            background: #f9f9f9;
         }
         
-        .orders-tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #000;
-        }
-        
-        .orders-content {
-            display: none;
-        }
-        
-        .orders-content.active {
-            display: block;
-        }
-        
-        .order-list {
-            display: grid;
-            gap: 20px;
-        }
-        
-        .order-item {
-            background: #fff;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid #e8e8e8;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-        }
-        
-        .order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        
-        .order-id {
-            font-size: 13px;
-            font-weight: 600;
-            color: #666;
-        }
-        
-        .order-date {
-            font-size: 13px;
-            color: #666;
-        }
-        
-        .order-products {
-            display: grid;
-            gap: 12px;
-        }
-        
-        .order-product {
-            display: flex;
-            gap: 12px;
-        }
-        
-        .order-product-image {
-            width: 60px;
-            height: 80px;
-            background: #f5f5f5;
-            flex-shrink: 0;
+        .shipping-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ddd;
+            border-radius: 50%;
+            margin-right: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            font-weight: 800;
-            color: #ddd;
-            border-radius: 6px;
         }
         
-        .order-product-info {
+        .shipping-option.selected .shipping-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: #000;
+            border-radius: 50%;
+        }
+        
+        .shipping-info {
             flex: 1;
         }
         
-        .order-product-name {
-            font-size: 14px;
+        .shipping-name {
             font-weight: 600;
+            font-size: 14px;
             margin-bottom: 4px;
         }
         
-        .order-product-details {
+        .shipping-details {
             font-size: 12px;
             color: #666;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
         
-        .order-product-price {
+        .shipping-price {
+            font-weight: 700;
             font-size: 14px;
-            font-weight: 700;
         }
         
-        .order-total {
+        /* ===== OWNER DASHBOARD ===== */
+        .dashboard-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2004;
+            padding: 20px;
+        }
+        
+        .dashboard-modal.active {
             display: flex;
-            justify-content: space-between;
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid #e8e8e8;
-            font-size: 16px;
-            font-weight: 700;
         }
         
-        .order-status {
-            display: inline-block;
-            padding: 4px 12px;
-            font-size: 11px;
-            font-weight: 700;
+        .dashboard-content {
+            background: #fff;
+            width: 100%;
+            max-width: 800px;
             border-radius: 12px;
+            overflow: hidden;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease-out;
+        }
+        
+        .dashboard-header {
+            padding: 24px;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .dashboard-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        
+        .dashboard-tabs {
+            display: flex;
+            border-bottom: 1px solid #e8e8e8;
+            background: #f8f8f8;
+        }
+        
+        .dashboard-tab {
+            padding: 16px 24px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .dashboard-tab.active {
+            color: #000;
+            border-bottom-color: #000;
+            background: #fff;
+        }
+        
+        .dashboard-body {
+            padding: 24px;
+        }
+        
+        .dashboard-section {
+            display: none;
+        }
+        
+        .dashboard-section.active {
+            display: block;
+        }
+        
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .orders-table th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 2px solid #000;
+            font-size: 13px;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
         
-        .status-processing {
-            background: #fff3cd;
-            color: #856404;
-        }
-        
-        .status-shipped {
-            background: #d4edda;
-            color: #155724;
+        .orders-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e8e8e8;
+            font-size: 14px;
         }
         
         /* ===== LOADING ===== */
@@ -1255,7 +1294,7 @@
                 display: flex;
             }
             
-            .menu-toggle {
+            .bottom-nav {
                 display: none;
             }
             
@@ -1284,9 +1323,29 @@
             .checkout-content {
                 max-width: 480px;
             }
+        }
+        
+        @media (max-width: 767px) {
+            .main-nav {
+                display: none;
+            }
             
-            .order-list {
-                grid-template-columns: 1fr;
+            .bottom-nav {
+                display: flex;
+            }
+            
+            .header-actions .currency-selector {
+                display: none;
+            }
+            
+            .user-menu .user-btn span {
+                display: none;
+            }
+            
+            .user-menu .user-btn {
+                padding: 8px;
+                width: 36px;
+                height: 36px;
             }
         }
         
@@ -1306,7 +1365,7 @@
     </style>
 </head>
 <body>
-    <!-- Announcement Bar - Perfect Clean Loop -->
+    <!-- Announcement Bar -->
     <div class="announcement-bar" id="announcementBar">
         <div class="announcement-container">
             <div class="announcement-content" id="announcementContent">
@@ -1318,12 +1377,6 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <button class="menu-toggle" id="menuToggle" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            
             <a href="#" class="logo" onclick="showAllProducts(); return false;">STREETZY</a>
             
             <nav class="main-nav">
@@ -1337,30 +1390,50 @@
             <div class="header-actions">
                 <select class="currency-selector" id="currencySelector" onchange="changeCurrency()"></select>
                 
+                <div class="user-menu">
+                    <button class="user-btn" id="userBtn" onclick="toggleUserMenu()">
+                        <span>Account</span>
+                    </button>
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="user-email" id="userEmail">Not logged in</div>
+                        <a href="#" class="dropdown-item" onclick="showLogin(); return false;">Login</a>
+                        <a href="#" class="dropdown-item" onclick="showRegister(); return false;">Register</a>
+                        <a href="#" class="dropdown-item" onclick="showOrders(); return false;">My Orders</a>
+                        <a href="#" class="dropdown-item" id="dashboardLink" onclick="showDashboard(); return false;" style="display: none;">Owner Dashboard</a>
+                        <a href="#" class="dropdown-item" onclick="logout(); return false;" id="logoutBtn" style="display: none;">Logout</a>
+                    </div>
+                </div>
+                
                 <button class="cart-btn" onclick="openCart()">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
-                        <line x1="3" y1="6" x2="21" y2="6"/>
-                        <path d="M16 10a4 4 0 0 1-8 0"/>
-                    </svg>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
-        <ul class="mobile-nav">
-            <li><a href="#" onclick="showAllProducts(); toggleMobileMenu(); return false;">All Products</a></li>
-            <li><a href="#" onclick="filterProducts('hoodies'); toggleMobileMenu(); return false;">Hoodies</a></li>
-            <li><a href="#" onclick="filterProducts('tees'); toggleMobileMenu(); return false;">Tees</a></li>
-            <li><a href="#" onclick="filterProducts('headwear'); toggleMobileMenu(); return false;">Headwear</a></li>
-            <li><a href="#" onclick="showOrders(); toggleMobileMenu(); return false;">Orders</a></li>
-            <li><a href="#" onclick="openCart(); toggleMobileMenu(); return false;">Cart</a></li>
-        </ul>
-    </div>
+    <!-- Bottom Navigation (Mobile) -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="showAllProducts(); return false;">
+            <div class="nav-icon">Home</div>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showSearch(); return false;">
+            <div class="nav-icon">Search</div>
+            <span>Search</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showOrders(); return false;">
+            <div class="nav-icon">Orders</div>
+            <span>Orders</span>
+        </a>
+        <a href="#" class="nav-item" onclick="openCart(); return false;">
+            <div class="nav-icon">Cart</div>
+            <span>Cart</span>
+        </a>
+        <a href="#" class="nav-item" onclick="toggleUserMenu(); return false;">
+            <div class="nav-icon">Account</div>
+            <span>Account</span>
+        </a>
+    </nav>
 
     <!-- Hero -->
     <section class="hero">
@@ -1371,26 +1444,191 @@
         </div>
     </section>
 
-    <!-- Products - SHOWN IMMEDIATELY -->
+    <!-- Products -->
     <section class="products-section" id="productsSection">
         <h2 class="section-title" id="sectionTitle">All Products</h2>
         <div class="products-grid" id="productsGrid"></div>
     </section>
 
-    <!-- Orders -->
-    <section class="orders-section" id="ordersSection">
-        <h2 class="section-title">My Orders</h2>
-        <div class="orders-tabs">
-            <button class="orders-tab active" onclick="switchOrderTab('processing')">Processing</button>
-            <button class="orders-tab" onclick="switchOrderTab('shipped')">Shipped</button>
+    <!-- Authentication Modal -->
+    <div class="auth-modal" id="authModal" onclick="closeAuthModal()">
+        <div class="auth-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeAuthModal()">×</button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="switchAuthTab('register')">Register</button>
+            </div>
+            
+            <div class="auth-body">
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form active" onsubmit="login(event)">
+                    <div class="form-group">
+                        <label class="form-label">Email or Username</label>
+                        <input type="text" class="form-input" id="loginEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="loginPassword" required>
+                    </div>
+                    
+                    <div id="loginError" style="color: #ff3b30; font-size: 12px; margin-bottom: 16px; display: none;"></div>
+                    
+                    <button type="submit" class="btn btn-black" style="width: 100%;">Login</button>
+                </form>
+                
+                <!-- Register Form -->
+                <form id="registerForm" class="auth-form" onsubmit="register(event)">
+                    <div class="form-group">
+                        <label class="form-label">Username</label>
+                        <input type="text" class="form-input" id="registerUsername" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" id="registerEmail" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Password</label>
+                        <input type="password" class="form-input" id="registerPassword" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password</label>
+                        <input type="password" class="form-input" id="registerConfirm" required>
+                    </div>
+                    
+                    <div id="registerError" style="color: #ff3b30; font-size: 12px; margin-bottom: 16px; display: none;"></div>
+                    
+                    <button type="submit" class="btn btn-black" style="width: 100%;">Create Account</button>
+                </form>
+            </div>
         </div>
-        <div class="orders-content active" id="processingOrders">
-            <div class="order-list" id="processingList"></div>
+    </div>
+
+    <!-- Owner Dashboard -->
+    <div class="dashboard-modal" id="dashboardModal" onclick="closeDashboard()">
+        <div class="dashboard-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeDashboard()">×</button>
+            
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">Owner Dashboard</h2>
+                <p style="font-size: 12px; color: rgba(255,255,255,0.8);">Manage your store</p>
+            </div>
+            
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" onclick="switchDashboardTab('orders')">All Orders</button>
+                <button class="dashboard-tab" onclick="switchDashboardTab('products')">Products</button>
+                <button class="dashboard-tab" onclick="switchDashboardTab('users')">Users</button>
+                <button class="dashboard-tab" onclick="switchDashboardTab('analytics')">Analytics</button>
+            </div>
+            
+            <div class="dashboard-body">
+                <!-- Orders Tab -->
+                <div class="dashboard-section active" id="ordersTab">
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">All Customer Orders</h3>
+                    <div class="orders-table-container" style="overflow-x: auto;">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allOrdersList">
+                                <!-- Orders will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Products Tab -->
+                <div class="dashboard-section" id="productsTab">
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">Manage Products</h3>
+                    
+                    <div style="margin-bottom: 20px;">
+                        <button class="btn btn-black" onclick="showAddProduct()">Add New Product</button>
+                    </div>
+                    
+                    <div class="products-table-container" style="overflow-x: auto;">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Category</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="dashboardProductsList">
+                                <!-- Products will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="dashboard-section" id="usersTab">
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">User Management</h3>
+                    <div class="users-table-container" style="overflow-x: auto;">
+                        <table class="orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Orders</th>
+                                    <th>Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody id="allUsersList">
+                                <!-- Users will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <!-- Analytics Tab -->
+                <div class="dashboard-section" id="analyticsTab">
+                    <h3 style="font-size: 18px; font-weight: 700; margin-bottom: 20px;">Store Analytics</h3>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px;">
+                        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;" id="totalOrders">0</div>
+                            <div style="font-size: 14px; color: #666;">Total Orders</div>
+                        </div>
+                        
+                        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;" id="totalRevenue">$0</div>
+                            <div style="font-size: 14px; color: #666;">Total Revenue</div>
+                        </div>
+                        
+                        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;" id="totalUsers">0</div>
+                            <div style="font-size: 14px; color: #666;">Total Users</div>
+                        </div>
+                        
+                        <div style="background: #f9f9f9; padding: 20px; border-radius: 8px; text-align: center;">
+                            <div style="font-size: 32px; font-weight: 900; margin-bottom: 8px;" id="totalProducts">0</div>
+                            <div style="font-size: 14px; color: #666;">Total Products</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f9f9f9; padding: 20px; border-radius: 8px;">
+                        <h4 style="font-size: 16px; font-weight: 700; margin-bottom: 16px;">Recent Activity</h4>
+                        <div id="recentActivity">
+                            <!-- Activity will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="orders-content" id="shippedOrders">
-            <div class="order-list" id="shippedList"></div>
-        </div>
-    </section>
+    </div>
 
     <!-- Product Modal -->
     <div class="modal-overlay" id="productModal" onclick="closeProductModal()">
@@ -1431,7 +1669,7 @@
         </div>
     </div>
 
-    <!-- Cart - FIXED TO LOOK LIKE PRODUCT MODAL -->
+    <!-- Cart -->
     <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
@@ -1448,6 +1686,10 @@
                 <div class="summary-row">
                     <span>Subtotal</span>
                     <span id="cartSubtotal">$0.00</span>
+                </div>
+                <div class="summary-row discount" id="discountRow" style="display: none;">
+                    <span>Bulk Discount</span>
+                    <span id="cartDiscount">-$0.00</span>
                 </div>
                 <div class="summary-row">
                     <span>Shipping</span>
@@ -1483,7 +1725,7 @@
                 </div>
                 <div class="step" id="step2">
                     <div class="step-number">2</div>
-                    <div class="step-label">Address</div>
+                    <div class="step-label">Shipping</div>
                 </div>
                 <div class="step" id="step3">
                     <div class="step-number">3</div>
@@ -1518,16 +1760,45 @@
                     
                     <div class="checkout-actions">
                         <button type="button" class="btn" style="background: #f5f5f5; color: #000;" onclick="closeCheckout()">Cancel</button>
-                        <button type="button" class="btn btn-black" onclick="goToStep(2)">Continue to Address</button>
+                        <button type="button" class="btn btn-black" onclick="goToStep(2)">Continue to Shipping</button>
                     </div>
                 </div>
                 
-                <!-- Step 2: Address -->
-                <div class="checkout-section" id="addressSection">
+                <!-- Step 2: Shipping Options -->
+                <div class="checkout-section" id="shippingSection">
                     <h3 class="checkout-section-title">
-                        Shipping Address
+                        Shipping Method
                         <span style="font-size: 12px; color: #666; font-weight: 400;">Step 2 of 3</span>
                     </h3>
+                    
+                    <div class="shipping-options">
+                        <div class="shipping-option selected" onclick="selectShipping(this, 'standard')">
+                            <div class="shipping-radio"></div>
+                            <div class="shipping-info">
+                                <div class="shipping-name">Standard Shipping</div>
+                                <div class="shipping-details">7-15 business days</div>
+                                <div class="shipping-price">$5.00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="shipping-option" onclick="selectShipping(this, 'express')">
+                            <div class="shipping-radio"></div>
+                            <div class="shipping-info">
+                                <div class="shipping-name">Express Shipping</div>
+                                <div class="shipping-details">3-7 business days</div>
+                                <div class="shipping-price">$15.00</div>
+                            </div>
+                        </div>
+                        
+                        <div class="shipping-option" onclick="selectShipping(this, 'priority')">
+                            <div class="shipping-radio"></div>
+                            <div class="shipping-info">
+                                <div class="shipping-name">Priority Shipping</div>
+                                <div class="shipping-details">1-3 business days</div>
+                                <div class="shipping-price">$25.00</div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="form-group">
                         <label class="form-label">Address</label>
@@ -1567,16 +1838,32 @@
                     
                     <div class="form-group">
                         <label class="form-label">Card Number</label>
-                        <div id="card-element"></div>
+                        <input type="text" class="form-input" id="cardNumber" placeholder="1234 5678 9012 3456" required>
                     </div>
                     
-                    <div id="card-errors" role="alert"></div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Expiry Date</label>
+                            <input type="text" class="form-input" id="cardExpiry" placeholder="MM/YY" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CVC</label>
+                            <input type="text" class="form-input" id="cardCvc" placeholder="123" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Name on Card</label>
+                        <input type="text" class="form-input" id="cardName" required>
+                    </div>
+                    
+                    <div id="card-errors" style="color: #ff3b30; font-size: 12px; margin-bottom: 16px;"></div>
                     
                     <div class="order-summary" id="checkoutSummaryStep3"></div>
                     
                     <div class="checkout-actions">
                         <button type="button" class="btn" style="background: #f5f5f5; color: #000;" onclick="goToStep(2)">Back</button>
-                        <button type="button" class="btn btn-black" id="submitPayment">Pay Now</button>
+                        <button type="button" class="btn btn-black" id="submitPayment" onclick="processPayment(event)">Pay Now</button>
                     </div>
                 </div>
             </div>
@@ -1620,7 +1907,7 @@
         </div>
         
         <div class="footer-bottom">
-            <p>© 2024 STREETZY. All rights reserved.</p>
+            <p>© 2026 STREETZY. All rights reserved.</p>
         </div>
     </footer>
 
@@ -1628,8 +1915,8 @@
         // ===== CONFIGURATION =====
         const STRIPE_PUBLIC_KEY = 'pk_test_51SmmJt17QA8vt1hy1VbhgBkZLhHCHC4helmC3VuWaAUoAtgnBKgZoF5JJgnDGT9E3Qu06irBA5oFVo6iUaWglRiB00rIcYc4l6';
         
-        // Products Data
-        const products = [
+        // Default Products Data
+        let products = JSON.parse(localStorage.getItem('streetzy_products')) || [
             {id: 1, name: 'ESSENTIAL OVERSIZED HOODIE', price: 85, category: 'hoodies'},
             {id: 2, name: 'CLASSIC LOGO TEE', price: 35, category: 'tees'},
             {id: 3, name: 'SIGNATURE SNAPBACK', price: 30, category: 'headwear'},
@@ -1643,6 +1930,11 @@
             {id: 11, name: 'HEAVYWEIGHT PULLOVER', price: 88, category: 'hoodies'},
             {id: 12, name: 'POCKET TEE', price: 42, category: 'tees'}
         ];
+        
+        // Save products to localStorage
+        function saveProducts() {
+            localStorage.setItem('streetzy_products', JSON.stringify(products));
+        }
         
         // Currencies
         const currencies = [
@@ -1660,18 +1952,49 @@
             'China', 'South Korea', 'Singapore', 'India', 'Brazil', 'Mexico', 'Spain', 'Italy'
         ];
         
+        // Shipping Options
+        const shippingOptions = [
+            {id: 'standard', name: 'Standard Shipping', price: 5, days: '7-15 business days'},
+            {id: 'express', name: 'Express Shipping', price: 15, days: '3-7 business days'},
+            {id: 'priority', name: 'Priority Shipping', price: 25, days: '1-3 business days'}
+        ];
+        
+        // Bulk Discounts
+        const bulkDiscounts = [
+            {minItems: 2, maxItems: 4, discount: 0.05}, // 5% off
+            {minItems: 5, maxItems: 9, discount: 0.10}, // 10% off
+            {minItems: 10, discount: 0.25} // 25% off for 10+
+        ];
+        
         // ===== STATE =====
         let cart = JSON.parse(localStorage.getItem('streetzy_cart')) || [];
         let orders = JSON.parse(localStorage.getItem('streetzy_orders')) || { processing: [], shipped: [] };
+        let users = JSON.parse(localStorage.getItem('streetzy_users')) || [];
+        let currentUser = JSON.parse(localStorage.getItem('streetzy_currentUser')) || null;
         let currentFilter = 'all';
         let currentProduct = null;
         let selectedSize = 'L';
         let currentQuantity = 1;
         let currentCurrency = 'USD';
         let currentCurrencySymbol = '$';
+        let selectedShipping = 'standard';
         let stripe = null;
         let elements = null;
         let card = null;
+        
+        // Initialize owner account if not exists
+        if (!users.find(u => u.email === 'ntilbury842@gmail.com')) {
+            const ownerAccount = {
+                id: 1,
+                username: 'streetzy',
+                email: 'ntilbury842@gmail.com',
+                password: 'Neverl8grumpydoctor',
+                isOwner: true,
+                joined: new Date().toISOString()
+            };
+            users.push(ownerAccount);
+            localStorage.setItem('streetzy_users', JSON.stringify(users));
+        }
         
         // ===== INITIALIZATION =====
         document.addEventListener('DOMContentLoaded', function() {
@@ -1694,24 +2017,22 @@
             // Load existing orders
             updateOrdersDisplay();
             
-            // Set up event listeners
-            setupEventListeners();
+            // Check for orders to move from processing to shipped
+            checkOrderStatus();
+            
+            // Update user interface based on login state
+            updateUserInterface();
             
             // Start announcement bar immediately
             startAnnouncementBar();
-            
-            // Check for orders to move from processing to shipped
-            checkOrderStatus();
         });
         
-        // ===== ANNOUNCEMENT BAR - PERFECT LOOP =====
+        // ===== ANNOUNCEMENT BAR =====
         function startAnnouncementBar() {
-            // Make sure animation starts immediately
             const content = document.getElementById('announcementContent');
             content.style.animation = 'scrollLoop 20s linear infinite';
             content.style.animationPlayState = 'running';
             
-            // Duplicate content for perfect seamless loop
             const container = document.querySelector('.announcement-container');
             const clone = content.cloneNode(true);
             container.appendChild(clone);
@@ -1745,6 +2066,317 @@
             return currency ? currency.rate : 1.00;
         }
         
+        // ===== USER SYSTEM =====
+        function updateUserInterface() {
+            const userBtn = document.getElementById('userBtn');
+            const userEmail = document.getElementById('userEmail');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const dashboardLink = document.getElementById('dashboardLink');
+            
+            if (currentUser) {
+                userEmail.textContent = currentUser.email;
+                userBtn.innerHTML = `<span>${currentUser.username}</span>`;
+                logoutBtn.style.display = 'block';
+                
+                // Show dashboard link only for owner
+                if (currentUser.isOwner) {
+                    dashboardLink.style.display = 'block';
+                } else {
+                    dashboardLink.style.display = 'none';
+                }
+            } else {
+                userEmail.textContent = 'Not logged in';
+                userBtn.innerHTML = `<span>Account</span>`;
+                logoutBtn.style.display = 'none';
+                dashboardLink.style.display = 'none';
+            }
+        }
+        
+        function toggleUserMenu() {
+            const dropdown = document.getElementById('userDropdown');
+            dropdown.classList.toggle('active');
+        }
+        
+        function showLogin() {
+            document.getElementById('authModal').classList.add('active');
+            switchAuthTab('login');
+            closeUserMenu();
+        }
+        
+        function showRegister() {
+            document.getElementById('authModal').classList.add('active');
+            switchAuthTab('register');
+            closeUserMenu();
+        }
+        
+        function closeUserMenu() {
+            document.getElementById('userDropdown').classList.remove('active');
+        }
+        
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.remove('active');
+        }
+        
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            
+            if (tab === 'login') {
+                document.querySelector('.auth-tab[onclick*="login"]').classList.add('active');
+                document.getElementById('loginForm').classList.add('active');
+            } else {
+                document.querySelector('.auth-tab[onclick*="register"]').classList.add('active');
+                document.getElementById('registerForm').classList.add('active');
+            }
+        }
+        
+        function login(event) {
+            event.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const error = document.getElementById('loginError');
+            
+            // Find user
+            const user = users.find(u => 
+                (u.email === email || u.username === email) && u.password === password
+            );
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('streetzy_currentUser', JSON.stringify(currentUser));
+                updateUserInterface();
+                closeAuthModal();
+                
+                // Show success message
+                alert('Login successful! Welcome back, ' + user.username + '!');
+            } else {
+                error.textContent = 'Invalid email/username or password';
+                error.style.display = 'block';
+            }
+        }
+        
+        function register(event) {
+            event.preventDefault();
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirm = document.getElementById('registerConfirm').value;
+            const error = document.getElementById('registerError');
+            
+            // Validation
+            if (password !== confirm) {
+                error.textContent = 'Passwords do not match';
+                error.style.display = 'block';
+                return;
+            }
+            
+            if (users.find(u => u.email === email)) {
+                error.textContent = 'Email already registered';
+                error.style.display = 'block';
+                return;
+            }
+            
+            if (users.find(u => u.username === username)) {
+                error.textContent = 'Username already taken';
+                error.style.display = 'block';
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: users.length + 1,
+                username: username,
+                email: email,
+                password: password,
+                isOwner: false,
+                joined: new Date().toISOString()
+            };
+            
+            users.push(newUser);
+            localStorage.setItem('streetzy_users', JSON.stringify(users));
+            
+            // Auto login
+            currentUser = newUser;
+            localStorage.setItem('streetzy_currentUser', JSON.stringify(currentUser));
+            updateUserInterface();
+            closeAuthModal();
+            
+            // Show success message
+            alert('Account created successfully! Welcome to STREETZY, ' + username + '!');
+        }
+        
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('streetzy_currentUser');
+            updateUserInterface();
+            closeUserMenu();
+            alert('Logged out successfully!');
+        }
+        
+        // ===== OWNER DASHBOARD =====
+        function showDashboard() {
+            if (!currentUser || !currentUser.isOwner) {
+                alert('Access denied. Owner only.');
+                return;
+            }
+            
+            document.getElementById('dashboardModal').classList.add('active');
+            updateDashboard();
+        }
+        
+        function closeDashboard() {
+            document.getElementById('dashboardModal').classList.remove('active');
+        }
+        
+        function switchDashboardTab(tab) {
+            document.querySelectorAll('.dashboard-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.dashboard-section').forEach(s => s.classList.remove('active'));
+            
+            document.getElementById(tab + 'Tab').classList.add('active');
+            document.querySelector(`.dashboard-tab[onclick*="${tab}"]`).classList.add('active');
+        }
+        
+        function updateDashboard() {
+            // Update analytics
+            const totalOrders = orders.processing.length + orders.shipped.length;
+            let totalRevenue = 0;
+            
+            // Calculate revenue from all orders
+            orders.processing.forEach(order => totalRevenue += order.total);
+            orders.shipped.forEach(order => totalRevenue += order.total);
+            
+            document.getElementById('totalOrders').textContent = totalOrders;
+            document.getElementById('totalRevenue').textContent = '$' + totalRevenue.toFixed(2);
+            document.getElementById('totalUsers').textContent = users.length;
+            document.getElementById('totalProducts').textContent = products.length;
+            
+            // Update orders table
+            updateAllOrdersTable();
+            
+            // Update products table
+            updateProductsTable();
+            
+            // Update users table
+            updateUsersTable();
+            
+            // Update recent activity
+            updateRecentActivity();
+        }
+        
+        function updateAllOrdersTable() {
+            const allOrders = [...orders.processing, ...orders.shipped];
+            const tbody = document.getElementById('allOrdersList');
+            
+            if (allOrders.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="5" style="text-align: center; padding: 20px;">No orders yet</td></tr>`;
+                return;
+            }
+            
+            tbody.innerHTML = allOrders.map(order => `
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.shippingTo?.name || 'N/A'}</td>
+                    <td>${new Date(order.date).toLocaleDateString()}</td>
+                    <td>$${order.total.toFixed(2)}</td>
+                    <td>${order.status === 'processing' ? 'Processing' : 'Shipped'}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function updateProductsTable() {
+            const tbody = document.getElementById('dashboardProductsList');
+            
+            tbody.innerHTML = products.map(product => `
+                <tr>
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>$${product.price}</td>
+                    <td>${product.category}</td>
+                    <td>
+                        <button onclick="deleteProduct(${product.id})" style="background: #ff3b30; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Delete</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function updateUsersTable() {
+            const tbody = document.getElementById('allUsersList');
+            
+            tbody.innerHTML = users.map(user => `
+                <tr>
+                    <td>${user.username} ${user.isOwner ? '(Owner)' : ''}</td>
+                    <td>${user.email}</td>
+                    <td>${getUserOrderCount(user.id)}</td>
+                    <td>${new Date(user.joined).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+        }
+        
+        function getUserOrderCount(userId) {
+            // This would need to track user IDs in orders for full implementation
+            return 'N/A';
+        }
+        
+        function updateRecentActivity() {
+            const container = document.getElementById('recentActivity');
+            const allOrders = [...orders.processing, ...orders.shipped]
+                .sort((a, b) => new Date(b.date) - new Date(a.date))
+                .slice(0, 5);
+            
+            if (allOrders.length === 0) {
+                container.innerHTML = '<div style="color: #666;">No recent activity</div>';
+                return;
+            }
+            
+            container.innerHTML = allOrders.map(order => `
+                <div style="padding: 8px 0; border-bottom: 1px solid #eee;">
+                    <div style="font-weight: 600;">Order #${order.id}</div>
+                    <div style="font-size: 12px; color: #666;">
+                        ${new Date(order.date).toLocaleString()} • ${order.status === 'processing' ? 'Processing' : 'Shipped'} • $${order.total.toFixed(2)}
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function showAddProduct() {
+            const name = prompt('Enter product name:');
+            if (!name) return;
+            
+            const price = parseFloat(prompt('Enter product price:'));
+            if (isNaN(price)) return;
+            
+            const category = prompt('Enter category (hoodies/tees/headwear):');
+            if (!['hoodies', 'tees', 'headwear'].includes(category)) {
+                alert('Invalid category. Use: hoodies, tees, or headwear');
+                return;
+            }
+            
+            const newProduct = {
+                id: products.length + 1,
+                name: name.toUpperCase(),
+                price: price,
+                category: category
+            };
+            
+            products.push(newProduct);
+            saveProducts();
+            renderProducts();
+            updateDashboard();
+            
+            alert('Product added successfully!');
+        }
+        
+        function deleteProduct(productId) {
+            if (!confirm('Are you sure you want to delete this product?')) return;
+            
+            products = products.filter(p => p.id !== productId);
+            saveProducts();
+            renderProducts();
+            updateDashboard();
+            
+            alert('Product deleted successfully!');
+        }
+        
         // ===== PRODUCTS =====
         function renderProducts() {
             const grid = document.getElementById('productsGrid');
@@ -1759,6 +2391,7 @@
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
                         <div class="product-price">${currentCurrencySymbol}${(product.price * getExchangeRate()).toFixed(2)}</div>
+                        <div class="discount-badge">BULK DISCOUNTS AVAILABLE</div>
                     </div>
                 </div>
             `).join('');
@@ -1785,15 +2418,6 @@
         
         function scrollToProducts() {
             document.getElementById('productsSection').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        // ===== MOBILE MENU - FIXED =====
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const toggle = document.getElementById('menuToggle');
-            menu.classList.toggle('active');
-            toggle.classList.toggle('active');
-            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
         }
         
         // ===== PRODUCT MODAL =====
@@ -1832,7 +2456,7 @@
             document.getElementById('modalQuantity').textContent = currentQuantity;
         }
         
-        // ===== CART FUNCTIONS - FIXED =====
+        // ===== CART FUNCTIONS =====
         function addToCartFromModal() {
             if (!currentProduct) return;
             
@@ -1855,12 +2479,11 @@
             
             saveCart();
             updateCartDisplay();
-            showNotification('Added to cart!');
             
-            // Don't close modal
+            // Show success but don't close modal
+            alert('Added to cart!');
         }
         
-        // INSTANT CHECKOUT - Buy Now
         function buyNowInstant() {
             if (!currentProduct) return;
             
@@ -1892,16 +2515,26 @@
             }, 300);
         }
         
-        function showNotification(message) {
-            // Simple notification
-            alert(message);
+        function calculateBulkDiscount(totalQuantity) {
+            for (let i = bulkDiscounts.length - 1; i >= 0; i--) {
+                const discount = bulkDiscounts[i];
+                if (totalQuantity >= discount.minItems) {
+                    return discount.discount;
+                }
+            }
+            return 0;
         }
         
         function updateCartDisplay() {
             const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = subtotal >= 70 ? 0 : 8;
-            const total = subtotal + shipping;
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const discountRate = calculateBulkDiscount(totalQuantity);
+            const discountAmount = subtotal * discountRate;
+            const discountedSubtotal = subtotal - discountAmount;
+            const shippingOption = shippingOptions.find(s => s.id === selectedShipping);
+            const shipping = discountedSubtotal >= 70 ? 0 : shippingOption.price;
+            const total = discountedSubtotal + shipping;
             const exchangeRate = getExchangeRate();
             
             document.getElementById('cartCount').textContent = cartCount;
@@ -1938,15 +2571,24 @@
                 cartFooter.style.display = 'block';
                 document.getElementById('cartSubtotal').textContent = 
                     `${currentCurrencySymbol}${(subtotal * exchangeRate).toFixed(2)}`;
+                
+                if (discountAmount > 0) {
+                    document.getElementById('discountRow').style.display = 'flex';
+                    document.getElementById('cartDiscount').textContent = 
+                        `-${currentCurrencySymbol}${(discountAmount * exchangeRate).toFixed(2)}`;
+                } else {
+                    document.getElementById('discountRow').style.display = 'none';
+                }
+                
                 document.getElementById('cartShipping').textContent = 
                     shipping === 0 ? 'FREE' : `${currentCurrencySymbol}${(shipping * exchangeRate).toFixed(2)}`;
                 document.getElementById('cartTotal').textContent = 
                     `${currentCurrencySymbol}${(total * exchangeRate).toFixed(2)}`;
                 
-                if (subtotal >= 70) {
+                if (discountedSubtotal >= 70) {
                     shippingNotice.textContent = 'FREE SHIPPING APPLIED!';
                 } else {
-                    shippingNotice.textContent = `Add ${currentCurrencySymbol}${((70 - subtotal) * exchangeRate).toFixed(2)} more for FREE SHIPPING`;
+                    shippingNotice.textContent = `Add ${currentCurrencySymbol}${((70 - discountedSubtotal) * exchangeRate).toFixed(2)} more for FREE SHIPPING`;
                 }
             }
         }
@@ -1985,42 +2627,31 @@
         }
         
         // ===== CHECKOUT FUNCTIONS =====
+        function selectShipping(element, shippingId) {
+            document.querySelectorAll('.shipping-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedShipping = shippingId;
+        }
+        
         function startCheckout() {
             if (cart.length === 0) return;
+            
+            if (!currentUser) {
+                alert('Please login or create an account to checkout');
+                showLogin();
+                return;
+            }
             
             closeCart();
             document.getElementById('checkoutModal').classList.add('active');
             updateCheckoutSummary(1);
             document.body.style.overflow = 'hidden';
             
-            // Initialize Stripe Elements if not already
-            if (!card) {
-                card = elements.create('card', {
-                    style: {
-                        base: {
-                            fontSize: '14px',
-                            color: '#000',
-                            fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
-                            '::placeholder': {
-                                color: '#999'
-                            }
-                        }
-                    }
-                });
-                card.mount('#card-element');
-                
-                card.on('change', function(event) {
-                    const displayError = document.getElementById('card-errors');
-                    if (event.error) {
-                        displayError.textContent = event.error.message;
-                    } else {
-                        displayError.textContent = '';
-                    }
-                });
+            // Pre-fill with user info if logged in
+            if (currentUser) {
+                document.getElementById('checkoutEmail').value = currentUser.email;
+                document.getElementById('checkoutName').value = currentUser.username;
             }
-            
-            // Add payment button listener
-            document.getElementById('submitPayment').onclick = processPayment;
         }
         
         function closeCheckout() {
@@ -2047,11 +2678,16 @@
         
         function updateCheckoutSummary(step) {
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const shipping = subtotal >= 70 ? 0 : 8;
-            const total = subtotal + shipping;
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const discountRate = calculateBulkDiscount(totalQuantity);
+            const discountAmount = subtotal * discountRate;
+            const discountedSubtotal = subtotal - discountAmount;
+            const shippingOption = shippingOptions.find(s => s.id === selectedShipping);
+            const shipping = discountedSubtotal >= 70 ? 0 : shippingOption.price;
+            const total = discountedSubtotal + shipping;
             const exchangeRate = getExchangeRate();
             
-            const summaryHTML = `
+            let summaryHTML = `
                 ${cart.map(item => `
                     <div class="summary-row">
                         <span>${item.name} (${item.size}) × ${item.quantity}</span>
@@ -2062,8 +2698,20 @@
                     <span>Subtotal</span>
                     <span>${currentCurrencySymbol}${(subtotal * exchangeRate).toFixed(2)}</span>
                 </div>
+            `;
+            
+            if (discountAmount > 0) {
+                summaryHTML += `
+                    <div class="summary-row" style="color: #4cd964; font-weight: 600;">
+                        <span>Bulk Discount (${Math.round(discountRate * 100)}%)</span>
+                        <span>-${currentCurrencySymbol}${(discountAmount * exchangeRate).toFixed(2)}</span>
+                    </div>
+                `;
+            }
+            
+            summaryHTML += `
                 <div class="summary-row">
-                    <span>Shipping</span>
+                    <span>Shipping (${shippingOption.name})</span>
                     <span>${shipping === 0 ? 'FREE' : currentCurrencySymbol + (shipping * exchangeRate).toFixed(2)}</span>
                 </div>
                 <div class="summary-row" style="font-weight: 700; font-size: 16px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #ddd;">
@@ -2076,7 +2724,9 @@
         }
         
         // ===== PAYMENT PROCESSING =====
-        async function processPayment() {
+        function processPayment(event) {
+            event.preventDefault();
+            
             // Validate contact info
             const email = document.getElementById('checkoutEmail').value;
             const name = document.getElementById('checkoutName').value;
@@ -2100,152 +2750,87 @@
                 return;
             }
             
+            // Validate payment
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cardExpiry = document.getElementById('cardExpiry').value;
+            const cardCvc = document.getElementById('cardCvc').value;
+            const cardName = document.getElementById('cardName').value;
+            
+            if (!cardNumber || !cardExpiry || !cardCvc || !cardName) {
+                alert('Please complete payment information');
+                return;
+            }
+            
             // Show loading
             document.getElementById('loadingOverlay').classList.add('active');
             
-            try {
-                // Simulate payment processing
-                setTimeout(() => {
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    
-                    // Create order
-                    const order = {
-                        id: 'ORD-' + Date.now().toString().slice(-8),
-                        date: new Date().toISOString(),
-                        items: [...cart],
-                        total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) + 
-                               (cart.reduce((sum, item) => sum + (item.price * item.quantity), 0) >= 70 ? 0 : 8),
-                        status: 'processing',
-                        shippingTo: {
-                            name: name,
-                            email: email,
-                            phone: phone,
-                            address: address,
-                            city: city,
-                            zip: zip,
-                            country: country
-                        }
-                    };
-                    
-                    // Add to processing orders
-                    orders.processing.push(order);
-                    localStorage.setItem('streetzy_orders', JSON.stringify(orders));
-                    
-                    // Clear cart
-                    cart = [];
-                    saveCart();
-                    updateCartDisplay();
-                    
-                    // Close checkout
-                    closeCheckout();
-                    
-                    // Show success
-                    showNotification('Payment successful! Order placed.');
-                    
-                    // Show orders
-                    showOrders();
-                    
-                    // Schedule to move to shipped after 20-40 hours
-                    const hoursToShip = 20 + Math.random() * 20;
-                    setTimeout(() => {
-                        moveOrderToShipped(order.id);
-                    }, hoursToShip * 60 * 60 * 1000);
-                    
-                }, 2000);
-                
-            } catch (error) {
+            // Simulate payment processing
+            setTimeout(() => {
                 document.getElementById('loadingOverlay').classList.remove('active');
-                document.getElementById('card-errors').textContent = 'Payment failed. Please try again.';
-            }
+                
+                // Create order
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+                const discountRate = calculateBulkDiscount(totalQuantity);
+                const discountAmount = subtotal * discountRate;
+                const discountedSubtotal = subtotal - discountAmount;
+                const shippingOption = shippingOptions.find(s => s.id === selectedShipping);
+                const shipping = discountedSubtotal >= 70 ? 0 : shippingOption.price;
+                const total = discountedSubtotal + shipping;
+                
+                const order = {
+                    id: 'ORD-' + Date.now().toString().slice(-8),
+                    userId: currentUser?.id || null,
+                    date: new Date().toISOString(),
+                    items: [...cart],
+                    subtotal: subtotal,
+                    discount: discountAmount,
+                    shipping: shipping,
+                    total: total,
+                    status: 'processing',
+                    shippingTo: {
+                        name: name,
+                        email: email,
+                        phone: phone,
+                        address: address,
+                        city: city,
+                        zip: zip,
+                        country: country
+                    },
+                    shippingMethod: shippingOption.name
+                };
+                
+                // Add to processing orders
+                orders.processing.push(order);
+                localStorage.setItem('streetzy_orders', JSON.stringify(orders));
+                
+                // Clear cart
+                cart = [];
+                saveCart();
+                updateCartDisplay();
+                
+                // Close checkout
+                closeCheckout();
+                
+                // Show success
+                alert('Payment successful! Order #' + order.id + ' has been placed.');
+                
+                // Show orders
+                showOrders();
+                
+                // Schedule to move to shipped after 20-40 hours
+                const hoursToShip = 20 + Math.random() * 20;
+                setTimeout(() => {
+                    moveOrderToShipped(order.id);
+                }, hoursToShip * 60 * 60 * 1000);
+                
+            }, 2000);
         }
         
         // ===== ORDERS =====
         function showOrders() {
-            document.getElementById('productsSection').style.display = 'none';
-            document.getElementById('ordersSection').style.display = 'block';
-            updateOrdersDisplay();
-            document.getElementById('ordersSection').scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        function switchOrderTab(tab) {
-            document.querySelectorAll('.orders-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.orders-content').forEach(c => c.classList.remove('active'));
-            
-            if (tab === 'processing') {
-                document.querySelector('.orders-tab[onclick*="processing"]').classList.add('active');
-                document.getElementById('processingOrders').classList.add('active');
-            } else {
-                document.querySelector('.orders-tab[onclick*="shipped"]').classList.add('active');
-                document.getElementById('shippedOrders').classList.add('active');
-            }
-            
-            updateOrdersDisplay();
-        }
-        
-        function updateOrdersDisplay() {
-            // Processing orders
-            const processingList = document.getElementById('processingList');
-            processingList.innerHTML = orders.processing.length === 0 ? 
-                '<div style="text-align: center; color: #999; padding: 40px;">No processing orders</div>' :
-                orders.processing.map(order => `
-                    <div class="order-item">
-                        <div class="order-header">
-                            <div class="order-id">Order #${order.id}</div>
-                            <div class="order-date">${new Date(order.date).toLocaleDateString()}</div>
-                        </div>
-                        <div class="order-products">
-                            ${order.items.map(item => `
-                                <div class="order-product">
-                                    <div class="order-product-image">${item.name.charAt(0)}</div>
-                                    <div class="order-product-info">
-                                        <div class="order-product-name">${item.name}</div>
-                                        <div class="order-product-details">Size: ${item.size} • Qty: ${item.quantity}</div>
-                                        <div class="order-product-price">${currentCurrencySymbol}${(item.price * item.quantity * getExchangeRate()).toFixed(2)}</div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="order-total">
-                            <span>Total</span>
-                            <span>${currentCurrencySymbol}${(order.total * getExchangeRate()).toFixed(2)}</span>
-                        </div>
-                        <div style="margin-top: 12px;">
-                            <span class="order-status status-processing">Processing</span>
-                        </div>
-                    </div>
-                `).join('');
-            
-            // Shipped orders
-            const shippedList = document.getElementById('shippedList');
-            shippedList.innerHTML = orders.shipped.length === 0 ? 
-                '<div style="text-align: center; color: #999; padding: 40px;">No shipped orders</div>' :
-                orders.shipped.map(order => `
-                    <div class="order-item">
-                        <div class="order-header">
-                            <div class="order-id">Order #${order.id}</div>
-                            <div class="order-date">${new Date(order.date).toLocaleDateString()}</div>
-                        </div>
-                        <div class="order-products">
-                            ${order.items.map(item => `
-                                <div class="order-product">
-                                    <div class="order-product-image">${item.name.charAt(0)}</div>
-                                    <div class="order-product-info">
-                                        <div class="order-product-name">${item.name}</div>
-                                        <div class="order-product-details">Size: ${item.size} • Qty: ${item.quantity}</div>
-                                        <div class="order-product-price">${currentCurrencySymbol}${(item.price * item.quantity * getExchangeRate()).toFixed(2)}</div>
-                                    </div>
-                                </div>
-                            `).join('')}
-                        </div>
-                        <div class="order-total">
-                            <span>Total</span>
-                            <span>${currentCurrencySymbol}${(order.total * getExchangeRate()).toFixed(2)}</span>
-                        </div>
-                        <div style="margin-top: 12px;">
-                            <span class="order-status status-shipped">Shipped</span>
-                        </div>
-                    </div>
-                `).join('');
+            // This would be expanded to show user's orders
+            alert('Orders page would show your order history here.');
         }
         
         function moveOrderToShipped(orderId) {
@@ -2259,9 +2844,11 @@
                 orders.shipped.push(order);
                 
                 localStorage.setItem('streetzy_orders', JSON.stringify(orders));
-                updateOrdersDisplay();
                 
-                showNotification('Order shipped!');
+                // Update dashboard if open
+                if (document.getElementById('dashboardModal').classList.contains('active')) {
+                    updateDashboard();
+                }
             }
         }
         
@@ -2276,36 +2863,24 @@
             });
         }
         
-        // ===== SETUP EVENT LISTENERS =====
-        function setupEventListeners() {
-            // Escape key closes modals
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    closeProductModal();
-                    closeCart();
-                    closeCheckout();
-                }
-            });
-            
-            // Close mobile menu when clicking outside
-            document.addEventListener('click', function(e) {
-                const mobileMenu = document.getElementById('mobileMenu');
-                const menuToggle = document.getElementById('menuToggle');
-                
-                if (mobileMenu.classList.contains('active') && 
-                    !mobileMenu.contains(e.target) && 
-                    !menuToggle.contains(e.target)) {
-                    toggleMobileMenu();
-                }
-            });
+        // ===== UTILITY FUNCTIONS =====
+        function showSearch() {
+            alert('Search functionality would go here.');
         }
         
         // ===== GLOBAL FUNCTIONS =====
         window.filterProducts = filterProducts;
         window.showAllProducts = showAllProducts;
         window.showOrders = showOrders;
-        window.switchOrderTab = switchOrderTab;
-        window.toggleMobileMenu = toggleMobileMenu;
+        window.toggleUserMenu = toggleUserMenu;
+        window.showLogin = showLogin;
+        window.showRegister = showRegister;
+        window.logout = logout;
+        window.showDashboard = showDashboard;
+        window.closeDashboard = closeDashboard;
+        window.switchDashboardTab = switchDashboardTab;
+        window.showAddProduct = showAddProduct;
+        window.deleteProduct = deleteProduct;
         window.openProductModal = openProductModal;
         window.closeProductModal = closeProductModal;
         window.selectSize = selectSize;
@@ -2317,10 +2892,12 @@
         window.openCart = openCart;
         window.closeCart = closeCart;
         window.continueShopping = continueShopping;
+        window.selectShipping = selectShipping;
         window.startCheckout = startCheckout;
         window.closeCheckout = closeCheckout;
         window.goToStep = goToStep;
+        window.processPayment = processPayment;
         window.changeCurrency = changeCurrency;
     </script>
 </body>
-</html>
+    </html>
