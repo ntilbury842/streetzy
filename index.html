@@ -161,7 +161,7 @@
             justify-content: center;
         }
         
-        /* ===== HEADER ACTIONS ===== */
+        /* ===== HEADER ACTIONS WITH ICONS ===== */
         .header-actions {
             display: flex;
             align-items: center;
@@ -184,7 +184,7 @@
             min-width: 100px;
         }
         
-        .cart-btn {
+        .icon-btn {
             background: #000;
             border: none;
             width: 36px;
@@ -217,20 +217,6 @@
         /* ===== USER MENU ===== */
         .user-menu {
             position: relative;
-        }
-        
-        .user-btn {
-            background: #000;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
         
         .user-dropdown {
@@ -405,83 +391,43 @@
             color: #000;
         }
         
-        /* ===== BULK DISCOUNT BADGE ===== */
-        .discount-badge {
-            background: #000;
-            color: #fff;
-            padding: 4px 8px;
-            font-size: 11px;
-            font-weight: 700;
-            border-radius: 4px;
-            margin-top: 8px;
-            display: inline-block;
-        }
-        
-        /* ===== AUTH MODAL ===== */
-        .auth-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.8);
+        /* ===== SEARCH SECTION ===== */
+        .search-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
             display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2003;
-            padding: 20px;
         }
         
-        .auth-modal.active {
-            display: flex;
-        }
-        
-        .auth-content {
-            background: #fff;
-            width: 100%;
-            max-width: 400px;
-            border-radius: 12px;
-            overflow: hidden;
+        .search-box {
+            margin-bottom: 40px;
             position: relative;
-            animation: modalIn 0.3s ease-out;
         }
         
-        @keyframes modalIn {
-            0% { transform: scale(0.9); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-        
-        .auth-tabs {
-            display: flex;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        
-        .auth-tab {
-            flex: 1;
-            padding: 20px;
-            background: none;
-            border: none;
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
             font-size: 16px;
-            font-weight: 700;
-            color: #666;
-            cursor: pointer;
+            border: 2px solid #000;
+            border-radius: 8px;
+            font-family: inherit;
         }
         
-        .auth-tab.active {
-            color: #000;
-            border-bottom: 2px solid #000;
-        }
-        
-        .auth-body {
-            padding: 30px;
-        }
-        
-        .auth-form {
+        /* ===== ACCOUNT SECTION ===== */
+        .account-section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
             display: none;
         }
         
-        .auth-form.active {
-            display: block;
+        .account-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            max-width: 500px;
+            margin: 0 auto;
         }
         
         /* ===== PRODUCT MODAL ===== */
@@ -511,6 +457,11 @@
             overflow: hidden;
             position: relative;
             animation: modalIn 0.3s ease-out;
+        }
+        
+        @keyframes modalIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
         
         .modal-close {
@@ -1337,16 +1288,6 @@
             .header-actions .currency-selector {
                 display: none;
             }
-            
-            .user-menu .user-btn span {
-                display: none;
-            }
-            
-            .user-menu .user-btn {
-                padding: 8px;
-                width: 36px;
-                height: 36px;
-            }
         }
         
         @media (min-width: 1024px) {
@@ -1361,6 +1302,26 @@
             .footer-content {
                 grid-template-columns: 2fr 1fr 1fr;
             }
+        }
+        
+        /* New sections styling */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
     </style>
 </head>
@@ -1377,34 +1338,52 @@
     <!-- Header -->
     <header class="header">
         <div class="header-container">
-            <a href="#" class="logo" onclick="showAllProducts(); return false;">STREETZY</a>
+            <a href="#" class="logo" onclick="showHome(); return false;">STREETZY</a>
             
             <nav class="main-nav">
                 <a href="#" class="nav-link" onclick="showAllProducts(); return false;">All Products</a>
                 <a href="#" class="nav-link" onclick="filterProducts('hoodies'); return false;">Hoodies</a>
                 <a href="#" class="nav-link" onclick="filterProducts('tees'); return false;">Tees</a>
                 <a href="#" class="nav-link" onclick="filterProducts('headwear'); return false;">Headwear</a>
-                <a href="#" class="nav-link" onclick="showOrders(); return false;">Orders</a>
             </nav>
             
             <div class="header-actions">
                 <select class="currency-selector" id="currencySelector" onchange="changeCurrency()"></select>
                 
+                <!-- Search Icon -->
+                <button class="icon-btn" onclick="showSearch(); return false;" title="Search">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                
+                <!-- Account Icon -->
                 <div class="user-menu">
-                    <button class="user-btn" id="userBtn" onclick="toggleUserMenu()">
-                        <span>Account</span>
+                    <button class="icon-btn" id="userBtn" onclick="toggleUserMenu()" title="Account">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
                     </button>
                     <div class="user-dropdown" id="userDropdown">
                         <div class="user-email" id="userEmail">Not logged in</div>
-                        <a href="#" class="dropdown-item" onclick="showLogin(); return false;">Login</a>
-                        <a href="#" class="dropdown-item" onclick="showRegister(); return false;">Register</a>
+                        <a href="#" class="dropdown-item" onclick="showLogin(); return false;" id="loginLink">Login</a>
+                        <a href="#" class="dropdown-item" onclick="showRegister(); return false;" id="registerLink">Register</a>
                         <a href="#" class="dropdown-item" onclick="showOrders(); return false;">My Orders</a>
+                        <a href="#" class="dropdown-item" onclick="showAccount(); return false;">Account</a>
                         <a href="#" class="dropdown-item" id="dashboardLink" onclick="showDashboard(); return false;" style="display: none;">Owner Dashboard</a>
                         <a href="#" class="dropdown-item" onclick="logout(); return false;" id="logoutBtn" style="display: none;">Logout</a>
                     </div>
                 </div>
                 
-                <button class="cart-btn" onclick="openCart()">
+                <!-- Cart Icon -->
+                <button class="icon-btn" onclick="openCart()" title="Cart">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
             </div>
@@ -1413,30 +1392,57 @@
 
     <!-- Bottom Navigation (Mobile) -->
     <nav class="bottom-nav">
-        <a href="#" class="nav-item active" onclick="showAllProducts(); return false;">
-            <div class="nav-icon">Home</div>
+        <a href="#" class="nav-item active" onclick="showHome(); return false;">
+            <div class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+            </div>
             <span>Home</span>
         </a>
         <a href="#" class="nav-item" onclick="showSearch(); return false;">
-            <div class="nav-icon">Search</div>
+            <div class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </div>
             <span>Search</span>
         </a>
         <a href="#" class="nav-item" onclick="showOrders(); return false;">
-            <div class="nav-icon">Orders</div>
+            <div class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+            </div>
             <span>Orders</span>
         </a>
         <a href="#" class="nav-item" onclick="openCart(); return false;">
-            <div class="nav-icon">Cart</div>
+            <div class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+            </div>
             <span>Cart</span>
         </a>
-        <a href="#" class="nav-item" onclick="toggleUserMenu(); return false;">
-            <div class="nav-icon">Account</div>
+        <a href="#" class="nav-item" onclick="showAccount(); return false;">
+            <div class="nav-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
             <span>Account</span>
         </a>
     </nav>
 
     <!-- Hero -->
-    <section class="hero">
+    <section class="hero" id="heroSection">
         <h1 class="hero-title">ELEVATE YOUR STREETWEAR</h1>
         <p class="hero-subtitle">Premium quality essentials designed for the modern urban lifestyle.</p>
         <div class="hero-buttons">
@@ -1448,6 +1454,65 @@
     <section class="products-section" id="productsSection">
         <h2 class="section-title" id="sectionTitle">All Products</h2>
         <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section" id="searchSection">
+        <div class="section-header">
+            <button class="back-btn" onclick="showHome(); return false;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <h2 class="section-title">Search Products</h2>
+        </div>
+        <div class="search-box">
+            <input type="text" class="search-input" id="searchInput" placeholder="Search for products..." onkeyup="searchProducts()">
+        </div>
+        <div class="products-grid" id="searchResults"></div>
+    </section>
+
+    <!-- Orders Section -->
+    <section class="orders-section" id="ordersSection" style="display: none; padding: 60px 20px; max-width: 1200px; margin: 0 auto;">
+        <div class="section-header">
+            <button class="back-btn" onclick="showHome(); return false;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <h2 class="section-title">My Orders</h2>
+        </div>
+        <div class="orders-tabs">
+            <button class="orders-tab active" onclick="switchOrderTab('processing')">Processing</button>
+            <button class="orders-tab" onclick="switchOrderTab('shipped')">Shipped</button>
+        </div>
+        <div class="orders-content active" id="processingOrders">
+            <div class="order-list" id="processingList"></div>
+        </div>
+        <div class="orders-content" id="shippedOrders">
+            <div class="order-list" id="shippedList"></div>
+        </div>
+    </section>
+
+    <!-- Account Section -->
+    <section class="account-section" id="accountSection">
+        <div class="section-header">
+            <button class="back-btn" onclick="showHome(); return false;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <h2 class="section-title">My Account</h2>
+        </div>
+        <div class="account-card" id="accountCard">
+            <!-- Account info will be populated here -->
+        </div>
     </section>
 
     <!-- Authentication Modal -->
@@ -1759,8 +1824,8 @@
                     <div class="order-summary" id="checkoutSummaryStep1"></div>
                     
                     <div class="checkout-actions">
-                        <button type="button" class="btn" style="background: #f5f5f5; color: #000;" onclick="closeCheckout()">Cancel</button>
-                        <button type="button" class="btn btn-black" onclick="goToStep(2)">Continue to Shipping</button>
+                        <button type="button" class="btn" style="background: #f5f5f5; color: #000; flex: 1;" onclick="closeCheckout()">Cancel</button>
+                        <button type="button" class="btn btn-black" style="flex: 1;" onclick="goToStep(2)">Continue to Shipping</button>
                     </div>
                 </div>
                 
@@ -1776,8 +1841,8 @@
                             <div class="shipping-radio"></div>
                             <div class="shipping-info">
                                 <div class="shipping-name">Standard Shipping</div>
-                                <div class="shipping-details">7-15 business days</div>
-                                <div class="shipping-price">$5.00</div>
+                                <div class="shipping-details">5-10 business days</div>
+                                <div class="shipping-price">$5.99</div>
                             </div>
                         </div>
                         
@@ -1785,8 +1850,8 @@
                             <div class="shipping-radio"></div>
                             <div class="shipping-info">
                                 <div class="shipping-name">Express Shipping</div>
-                                <div class="shipping-details">3-7 business days</div>
-                                <div class="shipping-price">$15.00</div>
+                                <div class="shipping-details">3-5 business days</div>
+                                <div class="shipping-price">$9.99</div>
                             </div>
                         </div>
                         
@@ -1795,7 +1860,7 @@
                             <div class="shipping-info">
                                 <div class="shipping-name">Priority Shipping</div>
                                 <div class="shipping-details">1-3 business days</div>
-                                <div class="shipping-price">$25.00</div>
+                                <div class="shipping-price">$15.99</div>
                             </div>
                         </div>
                     </div>
@@ -1824,8 +1889,8 @@
                     <div class="order-summary" id="checkoutSummaryStep2"></div>
                     
                     <div class="checkout-actions">
-                        <button type="button" class="btn" style="background: #f5f5f5; color: #000;" onclick="goToStep(1)">Back</button>
-                        <button type="button" class="btn btn-black" onclick="goToStep(3)">Continue to Payment</button>
+                        <button type="button" class="btn" style="background: #f5f5f5; color: #000; flex: 1;" onclick="goToStep(1)">Back</button>
+                        <button type="button" class="btn btn-black" style="flex: 1;" onclick="goToStep(3)">Continue to Payment</button>
                     </div>
                 </div>
                 
@@ -1862,8 +1927,8 @@
                     <div class="order-summary" id="checkoutSummaryStep3"></div>
                     
                     <div class="checkout-actions">
-                        <button type="button" class="btn" style="background: #f5f5f5; color: #000;" onclick="goToStep(2)">Back</button>
-                        <button type="button" class="btn btn-black" id="submitPayment" onclick="processPayment(event)">Pay Now</button>
+                        <button type="button" class="btn" style="background: #f5f5f5; color: #000; flex: 1;" onclick="goToStep(2)">Back</button>
+                        <button type="button" class="btn btn-black" style="flex: 1;" id="submitPayment" onclick="processPayment(event)">Pay Now</button>
                     </div>
                 </div>
             </div>
@@ -1952,14 +2017,14 @@
             'China', 'South Korea', 'Singapore', 'India', 'Brazil', 'Mexico', 'Spain', 'Italy'
         ];
         
-        // Shipping Options
+        // Shipping Options - Updated prices
         const shippingOptions = [
-            {id: 'standard', name: 'Standard Shipping', price: 5, days: '7-15 business days'},
-            {id: 'express', name: 'Express Shipping', price: 15, days: '3-7 business days'},
-            {id: 'priority', name: 'Priority Shipping', price: 25, days: '1-3 business days'}
+            {id: 'standard', name: 'Standard Shipping', price: 5.99, days: '5-10 business days'},
+            {id: 'express', name: 'Express Shipping', price: 9.99, days: '3-5 business days'},
+            {id: 'priority', name: 'Priority Shipping', price: 15.99, days: '1-3 business days'}
         ];
         
-        // Bulk Discounts
+        // Bulk Discounts (hidden from product cards, only shown at checkout)
         const bulkDiscounts = [
             {minItems: 2, maxItems: 4, discount: 0.05}, // 5% off
             {minItems: 5, maxItems: 9, discount: 0.10}, // 10% off
@@ -2038,6 +2103,67 @@
             container.appendChild(clone);
         }
         
+        // ===== NAVIGATION FUNCTIONS =====
+        function showHome() {
+            hideAllSections();
+            document.getElementById('heroSection').style.display = 'block';
+            document.getElementById('productsSection').style.display = 'block';
+            document.getElementById('footer').style.display = 'block';
+            updateBottomNav('home');
+            scrollToTop();
+        }
+        
+        function showSearch() {
+            hideAllSections();
+            document.getElementById('searchSection').style.display = 'block';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').innerHTML = '';
+            updateBottomNav('search');
+            document.getElementById('searchInput').focus();
+        }
+        
+        function showOrders() {
+            hideAllSections();
+            document.getElementById('ordersSection').style.display = 'block';
+            updateOrdersDisplay();
+            updateBottomNav('orders');
+        }
+        
+        function showAccount() {
+            hideAllSections();
+            document.getElementById('accountSection').style.display = 'block';
+            updateAccountDisplay();
+            updateBottomNav('account');
+        }
+        
+        function hideAllSections() {
+            document.getElementById('heroSection').style.display = 'none';
+            document.getElementById('productsSection').style.display = 'none';
+            document.getElementById('searchSection').style.display = 'none';
+            document.getElementById('ordersSection').style.display = 'none';
+            document.getElementById('accountSection').style.display = 'none';
+        }
+        
+        function updateBottomNav(activeItem) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            if (activeItem === 'home') {
+                document.querySelector('.nav-item[onclick*="showHome"]').classList.add('active');
+            } else if (activeItem === 'search') {
+                document.querySelector('.nav-item[onclick*="showSearch"]').classList.add('active');
+            } else if (activeItem === 'orders') {
+                document.querySelector('.nav-item[onclick*="showOrders"]').classList.add('active');
+            } else if (activeItem === 'account') {
+                document.querySelector('.nav-item[onclick*="showAccount"]').classList.add('active');
+            }
+        }
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
         // ===== CURRENCY =====
         function initializeCurrencies() {
             const selector = document.getElementById('currencySelector');
@@ -2072,11 +2198,14 @@
             const userEmail = document.getElementById('userEmail');
             const logoutBtn = document.getElementById('logoutBtn');
             const dashboardLink = document.getElementById('dashboardLink');
+            const loginLink = document.getElementById('loginLink');
+            const registerLink = document.getElementById('registerLink');
             
             if (currentUser) {
                 userEmail.textContent = currentUser.email;
-                userBtn.innerHTML = `<span>${currentUser.username}</span>`;
                 logoutBtn.style.display = 'block';
+                loginLink.style.display = 'none';
+                registerLink.style.display = 'none';
                 
                 // Show dashboard link only for owner
                 if (currentUser.isOwner) {
@@ -2086,9 +2215,48 @@
                 }
             } else {
                 userEmail.textContent = 'Not logged in';
-                userBtn.innerHTML = `<span>Account</span>`;
                 logoutBtn.style.display = 'none';
                 dashboardLink.style.display = 'none';
+                loginLink.style.display = 'block';
+                registerLink.style.display = 'block';
+            }
+        }
+        
+        function updateAccountDisplay() {
+            const accountCard = document.getElementById('accountCard');
+            
+            if (currentUser) {
+                accountCard.innerHTML = `
+                    <div style="text-align: center;">
+                        <div style="width: 80px; height: 80px; background: #000; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: bold; margin: 0 auto 20px;">
+                            ${currentUser.username.charAt(0).toUpperCase()}
+                        </div>
+                        <h3 style="margin-bottom: 10px;">${currentUser.username}</h3>
+                        <p style="color: #666; margin-bottom: 30px;">${currentUser.email}</p>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <button class="btn btn-black" style="width: 100%;" onclick="logout(); return false;">Logout</button>
+                        </div>
+                        
+                        ${currentUser.isOwner ? `
+                            <div style="margin-top: 20px;">
+                                <button class="btn" style="width: 100%; background: #f5f5f5; color: #000;" onclick="showDashboard(); return false;">Owner Dashboard</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            } else {
+                accountCard.innerHTML = `
+                    <div style="text-align: center; padding: 40px 0;">
+                        <h3 style="margin-bottom: 16px;">Please Login</h3>
+                        <p style="color: #666; margin-bottom: 30px;">Login or create an account to view your account details.</p>
+                        
+                        <div style="display: flex; gap: 12px;">
+                            <button class="btn btn-black" style="flex: 1;" onclick="showLogin(); return false;">Login</button>
+                            <button class="btn" style="flex: 1; background: #f5f5f5; color: #000;" onclick="showRegister(); return false;">Register</button>
+                        </div>
+                    </div>
+                `;
             }
         }
         
@@ -2146,9 +2314,10 @@
                 localStorage.setItem('streetzy_currentUser', JSON.stringify(currentUser));
                 updateUserInterface();
                 closeAuthModal();
+                showAccount();
                 
-                // Show success message
-                alert('Login successful! Welcome back, ' + user.username + '!');
+                // Update account display
+                updateAccountDisplay();
             } else {
                 error.textContent = 'Invalid email/username or password';
                 error.style.display = 'block';
@@ -2200,9 +2369,8 @@
             localStorage.setItem('streetzy_currentUser', JSON.stringify(currentUser));
             updateUserInterface();
             closeAuthModal();
-            
-            // Show success message
-            alert('Account created successfully! Welcome to STREETZY, ' + username + '!');
+            showAccount();
+            updateAccountDisplay();
         }
         
         function logout() {
@@ -2210,7 +2378,8 @@
             localStorage.removeItem('streetzy_currentUser');
             updateUserInterface();
             closeUserMenu();
-            alert('Logged out successfully!');
+            showAccount();
+            updateAccountDisplay();
         }
         
         // ===== OWNER DASHBOARD =====
@@ -2293,7 +2462,7 @@
                     <td>$${product.price}</td>
                     <td>${product.category}</td>
                     <td>
-                        <button onclick="deleteProduct(${product.id})" style="background: #ff3b30; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px;">Delete</button>
+                        <button onclick="deleteProduct(${product.id})" style="background: #ff3b30; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;">Delete</button>
                     </td>
                 </tr>
             `).join('');
@@ -2313,8 +2482,8 @@
         }
         
         function getUserOrderCount(userId) {
-            // This would need to track user IDs in orders for full implementation
-            return 'N/A';
+            const userOrders = [...orders.processing, ...orders.shipped].filter(order => order.userId === userId);
+            return userOrders.length;
         }
         
         function updateRecentActivity() {
@@ -2339,20 +2508,24 @@
         }
         
         function showAddProduct() {
+            // Simple product creation form
             const name = prompt('Enter product name:');
             if (!name) return;
             
             const price = parseFloat(prompt('Enter product price:'));
-            if (isNaN(price)) return;
+            if (isNaN(price)) {
+                alert('Invalid price');
+                return;
+            }
             
-            const category = prompt('Enter category (hoodies/tees/headwear):');
+            const category = prompt('Enter category (hoodies/tees/headwear):').toLowerCase();
             if (!['hoodies', 'tees', 'headwear'].includes(category)) {
                 alert('Invalid category. Use: hoodies, tees, or headwear');
                 return;
             }
             
             const newProduct = {
-                id: products.length + 1,
+                id: products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1,
                 name: name.toUpperCase(),
                 price: price,
                 category: category
@@ -2391,7 +2564,6 @@
                     <div class="product-info">
                         <div class="product-name">${product.name}</div>
                         <div class="product-price">${currentCurrencySymbol}${(product.price * getExchangeRate()).toFixed(2)}</div>
-                        <div class="discount-badge">BULK DISCOUNTS AVAILABLE</div>
                     </div>
                 </div>
             `).join('');
@@ -2400,18 +2572,46 @@
                 currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
         }
         
+        function searchProducts() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const resultsGrid = document.getElementById('searchResults');
+            
+            if (!searchTerm.trim()) {
+                resultsGrid.innerHTML = '<div style="text-align: center; width: 100%; color: #666;">Start typing to search for products</div>';
+                return;
+            }
+            
+            const filtered = products.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filtered.length === 0) {
+                resultsGrid.innerHTML = '<div style="text-align: center; width: 100%; color: #666;">No products found matching "' + searchTerm + '"</div>';
+            } else {
+                resultsGrid.innerHTML = filtered.map(product => `
+                    <div class="product-card" onclick="openProductModal(${product.id})">
+                        <div class="product-image">${product.name.charAt(0)}</div>
+                        <div class="product-info">
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-price">${currentCurrencySymbol}${(product.price * getExchangeRate()).toFixed(2)}</div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+        
         function filterProducts(category) {
             currentFilter = category;
-            document.getElementById('productsSection').style.display = 'block';
-            document.getElementById('ordersSection').style.display = 'none';
+            showAllProducts();
             renderProducts();
             scrollToProducts();
         }
         
         function showAllProducts() {
             currentFilter = 'all';
+            hideAllSections();
             document.getElementById('productsSection').style.display = 'block';
-            document.getElementById('ordersSection').style.display = 'none';
             renderProducts();
             scrollToProducts();
         }
@@ -2480,8 +2680,7 @@
             saveCart();
             updateCartDisplay();
             
-            // Show success but don't close modal
-            alert('Added to cart!');
+            // Don't close modal, just update cart
         }
         
         function buyNowInstant() {
@@ -2613,6 +2812,7 @@
             document.getElementById('cartOverlay').classList.add('active');
             document.getElementById('cartSidebar').classList.add('active');
             document.body.style.overflow = 'hidden';
+            updateBottomNav('cart');
         }
         
         function closeCart() {
@@ -2623,7 +2823,7 @@
         
         function continueShopping() {
             closeCart();
-            showAllProducts();
+            showHome();
         }
         
         // ===== CHECKOUT FUNCTIONS =====
@@ -2635,12 +2835,6 @@
         
         function startCheckout() {
             if (cart.length === 0) return;
-            
-            if (!currentUser) {
-                alert('Please login or create an account to checkout');
-                showLogin();
-                return;
-            }
             
             closeCart();
             document.getElementById('checkoutModal').classList.add('active');
@@ -2812,9 +3006,6 @@
                 // Close checkout
                 closeCheckout();
                 
-                // Show success
-                alert('Payment successful! Order #' + order.id + ' has been placed.');
-                
                 // Show orders
                 showOrders();
                 
@@ -2828,9 +3019,87 @@
         }
         
         // ===== ORDERS =====
-        function showOrders() {
-            // This would be expanded to show user's orders
-            alert('Orders page would show your order history here.');
+        function updateOrdersDisplay() {
+            // Processing orders
+            const processingList = document.getElementById('processingList');
+            processingList.innerHTML = orders.processing.length === 0 ? 
+                '<div style="text-align: center; color: #999; padding: 40px;">No processing orders</div>' :
+                orders.processing.map(order => `
+                    <div class="order-item" style="background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e8e8e8; margin-bottom: 20px;">
+                        <div class="order-header" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <div class="order-id" style="font-weight: 600;">Order #${order.id}</div>
+                            <div class="order-date">${new Date(order.date).toLocaleDateString()}</div>
+                        </div>
+                        <div class="order-products">
+                            ${order.items.map(item => `
+                                <div class="order-product" style="display: flex; gap: 12px; margin-bottom: 12px;">
+                                    <div class="order-product-image" style="width: 60px; height: 80px; background: #f5f5f5; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                        ${item.name.charAt(0)}
+                                    </div>
+                                    <div class="order-product-info">
+                                        <div class="order-product-name" style="font-weight: 600;">${item.name}</div>
+                                        <div class="order-product-details" style="color: #666; font-size: 12px;">Size: ${item.size} • Qty: ${item.quantity}</div>
+                                        <div class="order-product-price" style="font-weight: 700;">${currentCurrencySymbol}${(item.price * item.quantity * getExchangeRate()).toFixed(2)}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="order-total" style="font-weight: 700; border-top: 1px solid #e8e8e8; padding-top: 16px; margin-top: 16px;">
+                            <span>Total: ${currentCurrencySymbol}${(order.total * getExchangeRate()).toFixed(2)}</span>
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <span style="background: #fff3cd; color: #856404; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 700;">Processing</span>
+                        </div>
+                    </div>
+                `).join('');
+            
+            // Shipped orders
+            const shippedList = document.getElementById('shippedList');
+            shippedList.innerHTML = orders.shipped.length === 0 ? 
+                '<div style="text-align: center; color: #999; padding: 40px;">No shipped orders</div>' :
+                orders.shipped.map(order => `
+                    <div class="order-item" style="background: #fff; border-radius: 12px; padding: 20px; border: 1px solid #e8e8e8; margin-bottom: 20px;">
+                        <div class="order-header" style="display: flex; justify-content: space-between; margin-bottom: 16px;">
+                            <div class="order-id" style="font-weight: 600;">Order #${order.id}</div>
+                            <div class="order-date">${new Date(order.date).toLocaleDateString()}</div>
+                        </div>
+                        <div class="order-products">
+                            ${order.items.map(item => `
+                                <div class="order-product" style="display: flex; gap: 12px; margin-bottom: 12px;">
+                                    <div class="order-product-image" style="width: 60px; height: 80px; background: #f5f5f5; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+                                        ${item.name.charAt(0)}
+                                    </div>
+                                    <div class="order-product-info">
+                                        <div class="order-product-name" style="font-weight: 600;">${item.name}</div>
+                                        <div class="order-product-details" style="color: #666; font-size: 12px;">Size: ${item.size} • Qty: ${item.quantity}</div>
+                                        <div class="order-product-price" style="font-weight: 700;">${currentCurrencySymbol}${(item.price * item.quantity * getExchangeRate()).toFixed(2)}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="order-total" style="font-weight: 700; border-top: 1px solid #e8e8e8; padding-top: 16px; margin-top: 16px;">
+                            <span>Total: ${currentCurrencySymbol}${(order.total * getExchangeRate()).toFixed(2)}</span>
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <span style="background: #d4edda; color: #155724; padding: 4px 12px; border-radius: 12px; font-size: 12px; font-weight: 700;">Shipped</span>
+                        </div>
+                    </div>
+                `).join('');
+        }
+        
+        function switchOrderTab(tab) {
+            document.querySelectorAll('.orders-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.orders-content').forEach(c => c.classList.remove('active'));
+            
+            if (tab === 'processing') {
+                document.querySelector('.orders-tab[onclick*="processing"]').classList.add('active');
+                document.getElementById('processingOrders').classList.add('active');
+            } else {
+                document.querySelector('.orders-tab[onclick*="shipped"]').classList.add('active');
+                document.getElementById('shippedOrders').classList.add('active');
+            }
+            
+            updateOrdersDisplay();
         }
         
         function moveOrderToShipped(orderId) {
@@ -2844,6 +3113,7 @@
                 orders.shipped.push(order);
                 
                 localStorage.setItem('streetzy_orders', JSON.stringify(orders));
+                updateOrdersDisplay();
                 
                 // Update dashboard if open
                 if (document.getElementById('dashboardModal').classList.contains('active')) {
@@ -2863,15 +3133,13 @@
             });
         }
         
-        // ===== UTILITY FUNCTIONS =====
-        function showSearch() {
-            alert('Search functionality would go here.');
-        }
-        
         // ===== GLOBAL FUNCTIONS =====
         window.filterProducts = filterProducts;
         window.showAllProducts = showAllProducts;
+        window.showHome = showHome;
+        window.showSearch = showSearch;
         window.showOrders = showOrders;
+        window.showAccount = showAccount;
         window.toggleUserMenu = toggleUserMenu;
         window.showLogin = showLogin;
         window.showRegister = showRegister;
@@ -2879,6 +3147,7 @@
         window.showDashboard = showDashboard;
         window.closeDashboard = closeDashboard;
         window.switchDashboardTab = switchDashboardTab;
+        window.switchOrderTab = switchOrderTab;
         window.showAddProduct = showAddProduct;
         window.deleteProduct = deleteProduct;
         window.openProductModal = openProductModal;
@@ -2898,6 +3167,7 @@
         window.goToStep = goToStep;
         window.processPayment = processPayment;
         window.changeCurrency = changeCurrency;
+        window.searchProducts = searchProducts;
     </script>
 </body>
     </html>
