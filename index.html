@@ -57,19 +57,6 @@
             justify-content: space-between;
         }
         
-        .header-bottom {
-            background: #f9f9f9;
-            border-bottom: 1px solid #e8e8e8;
-            padding: 12px 16px;
-            display: none;
-        }
-        
-        .header-bottom.active {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
         .logo {
             font-size: 22px;
             font-weight: 900;
@@ -117,37 +104,55 @@
             width: 100%;
         }
         
-        /* ===== BACK BUTTON IN HEADER ===== */
-        .header-back-btn {
+        /* ===== PAGE HEADER WITH BACK BUTTON ===== */
+        .page-header {
             display: flex;
             align-items: center;
-            gap: 8px;
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: #000;
-            cursor: pointer;
-            padding: 8px 16px;
-            border-radius: 6px;
-            transition: background-color 0.2s;
+            justify-content: center;
+            padding: 20px 16px;
+            position: relative;
+            min-height: 60px;
+            width: 100%;
+            background: #fff;
+            border-bottom: 1px solid #e8e8e8;
         }
         
-        .header-back-btn:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
-        
-        .header-back-btn svg {
-            width: 20px;
-            height: 20px;
-        }
-        
-        .header-title {
+        .page-title {
             font-size: 18px;
             font-weight: 700;
             color: #000;
             text-align: center;
+            position: relative;
             flex: 1;
+        }
+        
+        .back-arrow-btn {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .back-arrow-btn:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        .back-arrow-btn svg {
+            width: 24px;
+            height: 24px;
+            stroke: #000;
         }
         
         /* ===== BOTTOM NAVIGATION BAR ===== */
@@ -532,50 +537,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             max-width: 500px;
             margin: 0 auto;
-        }
-        
-        /* ===== SECTION HEADERS - FIXED ===== */
-        .section-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 50px;
-            position: relative;
-            min-height: 60px;
-            width: 100%;
-        }
-        
-        .section-header .section-title {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            width: 100%;
-            position: relative;
-            font-size: clamp(1.8rem, 5vw, 2.2rem);
-        }
-        
-        .back-btn {
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: #000;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            padding: 12px 20px;
-            border-radius: 8px;
-            transition: background-color 0.2s, transform 0.2s;
-            z-index: 1;
-            height: 50px;
-        }
-        
-        .back-btn:hover {
-            background-color: #f5f5f5;
         }
         
         /* ===== AUTHENTICATION MODAL ===== */
@@ -1589,6 +1550,14 @@
             .form-row {
                 grid-template-columns: 1fr 1fr;
             }
+            
+            .page-header {
+                padding: 20px 30px;
+            }
+            
+            .back-arrow-btn {
+                left: 30px;
+            }
         }
         
         @media (max-width: 767px) {
@@ -1602,14 +1571,6 @@
             
             .header-actions .currency-selector {
                 display: none;
-            }
-            
-            .section-header {
-                padding: 0 15px;
-            }
-            
-            .back-btn {
-                left: 15px;
             }
             
             .hero {
@@ -1735,6 +1696,11 @@
             width: 100%;
             height: 100%;
         }
+        
+        /* Hide page header on home */
+        .page-header.hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -1798,20 +1764,18 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Header bottom with back button -->
-        <div class="header-bottom" id="headerBottom">
-            <button class="header-back-btn" id="headerBackBtn">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back to All Products
-            </button>
-            <div class="header-title" id="headerTitle"></div>
-            <div style="width: 100px;"></div> <!-- Spacer for alignment -->
-        </div>
     </header>
+
+    <!-- Page Header with Back Button -->
+    <div class="page-header hidden" id="pageHeader">
+        <button class="back-arrow-btn" id="pageBackBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+        </button>
+        <div class="page-title" id="pageTitle"></div>
+    </div>
 
     <!-- Bottom Navigation (Mobile) -->
     <nav class="bottom-nav">
@@ -1882,16 +1846,6 @@
 
     <!-- Search Section -->
     <section class="search-section" id="searchSection">
-        <div class="section-header">
-            <button class="back-btn" id="searchBackBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
-            </button>
-            <h2 class="section-title">Search Products</h2>
-        </div>
         <div class="search-box">
             <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
         </div>
@@ -1901,17 +1855,6 @@
 
     <!-- Orders Section -->
     <section class="orders-section" id="ordersSection">
-        <div class="section-header">
-            <button class="back-btn" id="ordersBackBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
-            </button>
-            <h2 class="section-title">My Orders</h2>
-        </div>
-        
         <div class="orders-tabs">
             <button class="orders-tab active" id="processingTab">Processing</button>
             <button class="orders-tab" id="shippedTab">Shipped</button>
@@ -1927,16 +1870,6 @@
 
     <!-- Account Section -->
     <section class="account-section" id="accountSection">
-        <div class="section-header">
-            <button class="back-btn" id="accountBackBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
-            </button>
-            <h2 class="section-title">My Account</h2>
-        </div>
         <div class="account-card" id="accountCard">
             <!-- Account info will be populated here -->
         </div>
@@ -2598,46 +2531,18 @@
             return price * currencyRates[currentCurrency];
         }
         
-        // ===== HEADER BACK BUTTON FUNCTIONALITY =====
-        function updateHeaderForSection(sectionName) {
-            const headerBottom = document.getElementById('headerBottom');
-            const headerTitle = document.getElementById('headerTitle');
-            const headerBackBtn = document.getElementById('headerBackBtn');
+        // ===== PAGE HEADER FUNCTIONALITY =====
+        function updatePageHeader(sectionName) {
+            const pageHeader = document.getElementById('pageHeader');
+            const pageTitle = document.getElementById('pageTitle');
             
             if (sectionName === 'home') {
-                // Hide header bottom on home
-                headerBottom.classList.remove('active');
+                // Hide page header on home
+                pageHeader.classList.add('hidden');
             } else {
-                // Show header bottom with section title
-                headerBottom.classList.add('active');
-                headerTitle.textContent = sectionName;
-                
-                // Update back button text based on section
-                if (sectionName === 'Search Products') {
-                    headerBackBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg>
-                        Back to All Products
-                    `;
-                } else if (sectionName === 'My Orders') {
-                    headerBackBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg>
-                        Back to All Products
-                    `;
-                } else if (sectionName === 'My Account') {
-                    headerBackBtn.innerHTML = `
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="19" y1="12" x2="5" y2="12"></line>
-                            <polyline points="12 19 5 12 12 5"></polyline>
-                        </svg>
-                        Back to All Products
-                    `;
-                }
+                // Show page header with section title
+                pageHeader.classList.remove('hidden');
+                pageTitle.textContent = sectionName;
             }
         }
         
@@ -2666,7 +2571,7 @@
             document.getElementById('mainFooter').style.display = 'block';
             renderProducts();
             updateBottomNav('home');
-            updateHeaderForSection('home');
+            updatePageHeader('home');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
@@ -2678,7 +2583,7 @@
             document.getElementById('searchInput').focus();
             document.getElementById('mainFooter').style.display = 'block';
             updateBottomNav('search');
-            updateHeaderForSection('Search Products');
+            updatePageHeader('Search Products');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
@@ -2692,7 +2597,7 @@
             document.getElementById('mainFooter').style.display = 'block';
             updateOrdersDisplay();
             updateBottomNav('orders');
-            updateHeaderForSection('My Orders');
+            updatePageHeader('My Orders');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
@@ -2702,7 +2607,7 @@
             document.getElementById('mainFooter').style.display = 'block';
             updateAccountDisplay();
             updateBottomNav('account');
-            updateHeaderForSection('My Account');
+            updatePageHeader('My Account');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
@@ -2781,7 +2686,7 @@
                         </div>
                     </div>
                 </div>
-            `}).join('');
+            `).join('');
             
             title.textContent = currentFilter === 'all' ? 'All Products' : 
                 currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
@@ -3508,8 +3413,8 @@
                 document.getElementById('userDropdown').classList.toggle('active');
             });
             
-            // Header back button
-            document.getElementById('headerBackBtn').addEventListener('click', showHome);
+            // Page back button
+            document.getElementById('pageBackBtn').addEventListener('click', showHome);
             
             // User dropdown
             document.getElementById('loginLink').addEventListener('click', showLogin);
@@ -3525,11 +3430,6 @@
                     document.getElementById('userDropdown').classList.remove('active');
                 }
             });
-            
-            // Back buttons
-            document.getElementById('searchBackBtn').addEventListener('click', showHome);
-            document.getElementById('ordersBackBtn').addEventListener('click', showHome);
-            document.getElementById('accountBackBtn').addEventListener('click', showHome);
             
             // Search
             document.getElementById('searchInput').addEventListener('input', function() {
@@ -3868,4 +3768,4 @@
         });
     </script>
 </body>
-                </html>
+    </html>
