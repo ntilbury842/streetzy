@@ -26,7 +26,7 @@
             overflow-y: auto;
         }
         
-        /* ===== HEADER ===== */
+        /* ===== UPDATED HEADER ===== */
         .header {
             position: sticky;
             top: 0;
@@ -57,6 +57,8 @@
             justify-content: space-between;
         }
         
+        /* REMOVED: header-bottom section and all boxed elements */
+        
         .logo {
             font-size: 22px;
             font-weight: 900;
@@ -69,6 +71,57 @@
         
         .logo:active {
             opacity: 0.7;
+        }
+        
+        /* ===== PAGE HEADER (for non-home pages) ===== */
+        .page-header {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            position: relative;
+            min-height: 60px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .page-header.active {
+            display: flex;
+        }
+        
+        .page-header-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            flex: 1;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+        
+        .back-button:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        
+        .back-button svg {
+            width: 20px;
+            height: 20px;
         }
         
         /* ===== MAIN NAV ===== */
@@ -102,57 +155,6 @@
         
         .nav-link:hover::after {
             width: 100%;
-        }
-        
-        /* ===== PAGE HEADER WITH BACK BUTTON ===== */
-        .page-header {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 16px;
-            position: relative;
-            min-height: 60px;
-            width: 100%;
-            background: #fff;
-            border-bottom: 1px solid #e8e8e8;
-        }
-        
-        .page-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #000;
-            text-align: center;
-            position: relative;
-            flex: 1;
-        }
-        
-        .back-arrow-btn {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            padding: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 6px;
-            transition: background-color 0.2s;
-            z-index: 2;
-            width: 40px;
-            height: 40px;
-        }
-        
-        .back-arrow-btn:hover {
-            background-color: rgba(0,0,0,0.05);
-        }
-        
-        .back-arrow-btn svg {
-            width: 24px;
-            height: 24px;
-            stroke: #000;
         }
         
         /* ===== BOTTOM NAVIGATION BAR ===== */
@@ -537,6 +539,26 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             max-width: 500px;
             margin: 0 auto;
+        }
+        
+        /* ===== SECTION HEADERS - UPDATED ===== */
+        .section-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 50px;
+            position: relative;
+            min-height: 60px;
+            width: 100%;
+        }
+        
+        .section-header .section-title {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
         }
         
         /* ===== AUTHENTICATION MODAL ===== */
@@ -1550,14 +1572,6 @@
             .form-row {
                 grid-template-columns: 1fr 1fr;
             }
-            
-            .page-header {
-                padding: 20px 30px;
-            }
-            
-            .back-arrow-btn {
-                left: 30px;
-            }
         }
         
         @media (max-width: 767px) {
@@ -1571,6 +1585,10 @@
             
             .header-actions .currency-selector {
                 display: none;
+            }
+            
+            .section-header {
+                padding: 0 15px;
             }
             
             .hero {
@@ -1696,11 +1714,6 @@
             width: 100%;
             height: 100%;
         }
-        
-        /* Hide page header on home */
-        .page-header.hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -1764,18 +1777,19 @@
                 </div>
             </div>
         </div>
+        
+        <!-- NEW: Page Header with back button and title -->
+        <div class="page-header" id="pageHeader">
+            <button class="back-button" id="pageBackButton">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <div class="page-header-title" id="pageTitle"></div>
+        </div>
     </header>
-
-    <!-- Page Header with Back Button -->
-    <div class="page-header hidden" id="pageHeader">
-        <button class="back-arrow-btn" id="pageBackBtn">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="19" y1="12" x2="5" y2="12"></line>
-                <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-        </button>
-        <div class="page-title" id="pageTitle"></div>
-    </div>
 
     <!-- Bottom Navigation (Mobile) -->
     <nav class="bottom-nav">
@@ -1846,6 +1860,16 @@
 
     <!-- Search Section -->
     <section class="search-section" id="searchSection">
+        <div class="section-header">
+            <button class="back-btn" id="searchBackBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <h2 class="section-title">Search Products</h2>
+        </div>
         <div class="search-box">
             <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
         </div>
@@ -1855,6 +1879,17 @@
 
     <!-- Orders Section -->
     <section class="orders-section" id="ordersSection">
+        <div class="section-header">
+            <button class="back-btn" id="ordersBackBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <h2 class="section-title">My Orders</h2>
+        </div>
+        
         <div class="orders-tabs">
             <button class="orders-tab active" id="processingTab">Processing</button>
             <button class="orders-tab" id="shippedTab">Shipped</button>
@@ -1870,6 +1905,16 @@
 
     <!-- Account Section -->
     <section class="account-section" id="accountSection">
+        <div class="section-header">
+            <button class="back-btn" id="accountBackBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                </svg>
+                Back
+            </button>
+            <h2 class="section-title">My Account</h2>
+        </div>
         <div class="account-card" id="accountCard">
             <!-- Account info will be populated here -->
         </div>
@@ -2531,18 +2576,26 @@
             return price * currencyRates[currentCurrency];
         }
         
-        // ===== PAGE HEADER FUNCTIONALITY =====
-        function updatePageHeader(sectionName) {
+        // ===== UPDATED HEADER FUNCTIONS =====
+        function updatePageHeader(sectionName, showBackButton = true) {
             const pageHeader = document.getElementById('pageHeader');
             const pageTitle = document.getElementById('pageTitle');
+            const pageBackButton = document.getElementById('pageBackButton');
             
             if (sectionName === 'home') {
                 // Hide page header on home
-                pageHeader.classList.add('hidden');
+                pageHeader.classList.remove('active');
             } else {
-                // Show page header with section title
-                pageHeader.classList.remove('hidden');
+                // Show page header with title
+                pageHeader.classList.add('active');
                 pageTitle.textContent = sectionName;
+                
+                // Show/hide back button
+                if (showBackButton) {
+                    pageBackButton.style.display = 'flex';
+                } else {
+                    pageBackButton.style.display = 'none';
+                }
             }
         }
         
@@ -2686,7 +2739,7 @@
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `}).join('');
             
             title.textContent = currentFilter === 'all' ? 'All Products' : 
                 currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
@@ -3413,8 +3466,8 @@
                 document.getElementById('userDropdown').classList.toggle('active');
             });
             
-            // Page back button
-            document.getElementById('pageBackBtn').addEventListener('click', showHome);
+            // Page header back button
+            document.getElementById('pageBackButton').addEventListener('click', showHome);
             
             // User dropdown
             document.getElementById('loginLink').addEventListener('click', showLogin);
@@ -3430,6 +3483,11 @@
                     document.getElementById('userDropdown').classList.remove('active');
                 }
             });
+            
+            // Back buttons in sections
+            document.getElementById('searchBackBtn').addEventListener('click', showHome);
+            document.getElementById('ordersBackBtn').addEventListener('click', showHome);
+            document.getElementById('accountBackBtn').addEventListener('click', showHome);
             
             // Search
             document.getElementById('searchInput').addEventListener('input', function() {
@@ -3768,4 +3826,4 @@
         });
     </script>
 </body>
-    </html>
+                </html>
