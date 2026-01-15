@@ -57,8 +57,6 @@
             justify-content: space-between;
         }
         
-        /* REMOVED: header-bottom section and all boxed elements */
-        
         .logo {
             font-size: 22px;
             font-weight: 900;
@@ -409,7 +407,7 @@
         
         /* ===== PRODUCTS SECTION ===== */
         .products-section {
-            padding: 80px 20px;
+            padding: 40px 20px 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
             display: block;
@@ -487,11 +485,11 @@
         
         /* ===== SEARCH SECTION ===== */
         .search-section {
-            padding: 80px 20px;
+            padding: 40px 20px 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
             display: none;
-            min-height: 100vh;
+            min-height: calc(100vh - 120px);
         }
         
         .search-box {
@@ -516,20 +514,20 @@
         
         /* ===== ORDERS SECTION ===== */
         .orders-section {
-            padding: 80px 20px;
+            padding: 40px 20px 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
             display: none;
-            min-height: 100vh;
+            min-height: calc(100vh - 120px);
         }
         
         /* ===== ACCOUNT SECTION ===== */
         .account-section {
-            padding: 80px 20px;
+            padding: 40px 20px 80px 20px;
             max-width: 1200px;
             margin: 0 auto;
             display: none;
-            min-height: 100vh;
+            min-height: calc(100vh - 120px);
         }
         
         .account-card {
@@ -539,26 +537,6 @@
             box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             max-width: 500px;
             margin: 0 auto;
-        }
-        
-        /* ===== SECTION HEADERS - UPDATED ===== */
-        .section-header {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 50px;
-            position: relative;
-            min-height: 60px;
-            width: 100%;
-        }
-        
-        .section-header .section-title {
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            width: 100%;
-            position: relative;
-            font-size: clamp(1.8rem, 5vw, 2.2rem);
         }
         
         /* ===== AUTHENTICATION MODAL ===== */
@@ -1587,10 +1565,6 @@
                 display: none;
             }
             
-            .section-header {
-                padding: 0 15px;
-            }
-            
             .hero {
                 padding: 60px 20px;
             }
@@ -1860,16 +1834,6 @@
 
     <!-- Search Section -->
     <section class="search-section" id="searchSection">
-        <div class="section-header">
-            <button class="back-btn" id="searchBackBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
-            </button>
-            <h2 class="section-title">Search Products</h2>
-        </div>
         <div class="search-box">
             <input type="text" class="search-input" id="searchInput" placeholder="Search for products...">
         </div>
@@ -1879,17 +1843,6 @@
 
     <!-- Orders Section -->
     <section class="orders-section" id="ordersSection">
-        <div class="section-header">
-            <button class="back-btn" id="ordersBackBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
-            </button>
-            <h2 class="section-title">My Orders</h2>
-        </div>
-        
         <div class="orders-tabs">
             <button class="orders-tab active" id="processingTab">Processing</button>
             <button class="orders-tab" id="shippedTab">Shipped</button>
@@ -1905,16 +1858,6 @@
 
     <!-- Account Section -->
     <section class="account-section" id="accountSection">
-        <div class="section-header">
-            <button class="back-btn" id="accountBackBtn">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="19" y1="12" x2="5" y2="12"></line>
-                    <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                Back
-            </button>
-            <h2 class="section-title">My Account</h2>
-        </div>
         <div class="account-card" id="accountCard">
             <!-- Account info will be populated here -->
         </div>
@@ -2739,7 +2682,7 @@
                         </div>
                     </div>
                 </div>
-            `}).join('');
+            `).join('');
             
             title.textContent = currentFilter === 'all' ? 'All Products' : 
                 currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
@@ -3484,11 +3427,6 @@
                 }
             });
             
-            // Back buttons in sections
-            document.getElementById('searchBackBtn').addEventListener('click', showHome);
-            document.getElementById('ordersBackBtn').addEventListener('click', showHome);
-            document.getElementById('accountBackBtn').addEventListener('click', showHome);
-            
             // Search
             document.getElementById('searchInput').addEventListener('input', function() {
                 updateSearchResults(this.value);
@@ -3826,4 +3764,4 @@
         });
     </script>
 </body>
-                </html>
+    </html>
