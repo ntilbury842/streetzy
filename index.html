@@ -4273,7 +4273,6 @@
         async function sendContactEmail(formData) {
             try {
                 // Using Formspree.io as a free email service
-                // You'll need to create a free account at formspree.io and replace the email below
                 const response = await fetch('https://formspree.io/f/xrgvbkbr', {
                     method: 'POST',
                     headers: {
@@ -4287,7 +4286,7 @@
                         message: formData.message,
                         _subject: `STREETZY Contact Form: ${formData.name}`,
                         _replyto: formData.email,
-                        _cc: 'noaht842@outlook.com' // CC to your email
+                        _cc: 'noaht842@outlook.com'
                     })
                 });
                 
@@ -4451,7 +4450,8 @@
             
             const shopCollectionBtn = document.getElementById('shopCollectionBtn');
             if (shopCollectionBtn) {
-                shopCollectionBtn.addEventListener('click', function() {
+                shopCollectionBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
                     currentFilter = 'all';
                     showHome();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4460,7 +4460,8 @@
             
             const viewNewArrivals = document.getElementById('viewNewArrivals');
             if (viewNewArrivals) {
-                viewNewArrivals.addEventListener('click', function() {
+                viewNewArrivals.addEventListener('click', function(e) {
+                    e.preventDefault();
                     currentFilter = 'all';
                     showHome();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -4951,4 +4952,4 @@
         });
     </script>
 </body>
-                                                  </html>
+    </html>
