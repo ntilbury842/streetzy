@@ -1034,6 +1034,7 @@
             font-size: 80px;
             font-weight: 900;
             color: #ccc;
+            transition: transform 0.3s ease;
         }
         
         .modal-details {
@@ -4337,15 +4338,15 @@
                 });
             }
             
-            // Bottom navigation
+            // Bottom navigation - FIXED NAVIGATION
             document.getElementById('bottomHome').addEventListener('click', showHome);
-            document.getElementById('bottomSearch').addEventListener('click', showContact);
+            document.getElementById('bottomSearch').addEventListener('click', showSearch); // Fixed: Now goes to search, not contact
             document.getElementById('bottomOrders').addEventListener('click', showOrders);
             document.getElementById('bottomReviews').addEventListener('click', showReviews);
             document.getElementById('bottomCart').addEventListener('click', openCart);
             
-            // Header actions
-            document.getElementById('searchBtn').addEventListener('click', showSearchPopup);
+            // Header actions - FIXED NAVIGATION
+            document.getElementById('searchBtn').addEventListener('click', showSearchPopup); // Fixed: Now shows search popup
             document.getElementById('cartBtn').addEventListener('click', openCart);
             document.getElementById('userBtn').addEventListener('click', function() {
                 document.getElementById('userDropdown').classList.toggle('active');
@@ -4786,4 +4787,4 @@
         });
     </script>
 </body>
-    </html>
+                        </html>
