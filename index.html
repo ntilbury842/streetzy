@@ -70,34 +70,6 @@
             opacity: 0.7;
         }
         
-        /* ===== UPDATED SEARCH BAR ===== */
-        .header-search {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 300px;
-            display: none;
-        }
-        
-        .search-bar {
-            width: 100%;
-            padding: 10px 16px;
-            font-size: 14px;
-            border: 1px solid #e8e8e8;
-            border-radius: 20px;
-            background: rgba(0,0,0,0.07);
-            outline: none;
-            transition: all 0.3s;
-        }
-        
-        .search-bar:focus {
-            background: rgba(0,0,0,0.1);
-        }
-        
-        .header-search.visible {
-            display: block;
-        }
-        
         /* ===== PAGE HEADER (for non-home pages) ===== */
         .page-header {
             display: none;
@@ -479,30 +451,28 @@
             color: #000;
         }
         
-        /* ===== CATEGORY FILTERS - UPDATED (SMALLER & STRAIGHT LINE) ===== */
+        /* ===== CATEGORY FILTERS - UPDATED ===== */
         .category-filters {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             margin-bottom: 40px;
             flex-wrap: wrap;
             padding: 0 20px;
-            align-items: center;
         }
         
         .category-btn {
-            padding: 10px 20px;
+            padding: 12px 28px;
             background: #f8f8f8;
             border: 2px solid #e8e8e8;
-            border-radius: 20px;
-            font-size: 13px;
+            border-radius: 25px;
+            font-size: 15px;
             font-weight: 600;
             color: #666;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            white-space: nowrap;
         }
         
         .category-btn::before {
@@ -671,7 +641,7 @@
             text-align: right;
         }
         
-        /* Enhanced Reviews Tabs - BLACK BUTTONS ===== */
+        /* Enhanced Reviews Tabs */
         .reviews-tabs {
             display: flex;
             justify-content: center;
@@ -808,22 +778,20 @@
             border-top: 1px solid #eee;
         }
         
-        /* UPDATED: BLACK BUTTONS INSTEAD OF YELLOW */
         .helpful-btn {
-            background: #000;
-            border: 1px solid #000;
+            background: #f8f8f8;
+            border: 1px solid #ddd;
             padding: 8px 16px;
             border-radius: 20px;
             font-size: 14px;
-            color: #fff;
+            color: #666;
             cursor: pointer;
             transition: all 0.2s;
-            font-weight: 600;
         }
         
         .helpful-btn:hover {
-            background: #333;
-            border-color: #333;
+            background: #000;
+            color: #fff;
         }
         
         /* ===== SEARCH SECTION - UPDATED ===== */
@@ -853,39 +821,6 @@
         .search-input:focus {
             border-color: #666;
             outline: none;
-        }
-        
-        /* ===== CONTACT SECTION ===== */
-        .contact-section {
-            padding: 60px 20px 80px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            display: none;
-            min-height: calc(100vh - 120px);
-        }
-        
-        .contact-container {
-            background: #fff;
-            border-radius: 16px;
-            padding: 50px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-            border: 1px solid #e8e8e8;
-        }
-        
-        .contact-title {
-            font-size: 32px;
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 20px;
-            color: #000;
-        }
-        
-        .contact-subtitle {
-            font-size: 16px;
-            color: #666;
-            text-align: center;
-            margin-bottom: 40px;
-            line-height: 1.6;
         }
         
         /* ===== ORDERS SECTION ===== */
@@ -1034,7 +969,6 @@
             font-size: 80px;
             font-weight: 900;
             color: #ccc;
-            transition: transform 0.3s ease;
         }
         
         .modal-details {
@@ -1915,7 +1849,7 @@
             font-size: 14px;
         }
         
-        /* UPDATED: Payment icons without emojis and Chinese symbols */
+        /* Payment icons from second code */
         .payment-icons {
             display: flex;
             justify-content: center;
@@ -1924,11 +1858,10 @@
             flex-wrap: wrap;
         }
         
-        .payment-icon {
-            font-size: 16px;
+        .payment-icon-footer {
+            font-size: 24px;
             color: #fff;
             opacity: 0.8;
-            font-weight: 600;
         }
         
         /* ===== RESPONSIVE ===== */
@@ -2153,7 +2086,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.95);
             display: none;
             align-items: center;
             justify-content: center;
@@ -2224,11 +2157,7 @@
     <header class="header">
         <div class="header-top">
             <div class="header-container">
-                <div class="logo" id="homeLogo">STREETZY</div>
-                
-                <div class="header-search" id="headerSearch">
-                    <input type="text" class="search-bar" id="headerSearchInput" placeholder="Search products...">
-                </div>
+                <div class="logo" id="homeLogo">IISVGE</div>
                 
                 <div class="header-actions">
                     <!-- Search Icon -->
@@ -2461,38 +2390,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact-section" id="contactSection">
-        <div class="contact-container">
-            <h2 class="contact-title">CONTACT</h2>
-            <p class="contact-subtitle">For all enquiries please leave us a message below and we will respond to you via email within 1 - 2 working days. Thank you!</p>
-            
-            <form id="contactForm">
-                <div class="form-group">
-                    <label class="form-label">Your name</label>
-                    <input type="text" class="form-input" id="contactName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Your email</label>
-                    <input type="email" class="form-input" id="contactEmail" required>
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Your phone (optional)</label>
-                    <input type="tel" class="form-input" id="contactPhone">
-                </div>
-                
-                <div class="form-group">
-                    <label class="form-label">Your message</label>
-                    <textarea class="form-input" id="contactMessage" rows="5" required></textarea>
-                </div>
-                
-                <button type="submit" class="btn btn-black" style="width: 100%; padding: 18px; margin-top: 20px;">SEND MESSAGE</button>
-            </form>
-        </div>
-    </section>
-
     <!-- Search Section -->
     <section class="search-section" id="searchSection">
         <div class="search-box">
@@ -2525,7 +2422,7 @@
             <button class="modal-close" id="authCloseBtn">×</button>
             
             <div class="auth-header">
-                <h2 class="auth-title">Welcome to STREETZY</h2>
+                <h2 class="auth-title">Welcome to IISVGE</h2>
             </div>
             
             <div class="auth-tabs">
@@ -2898,7 +2795,7 @@
             
             <div class="checkout-body">
                 <!-- Step 1: Contact -->
-                <div class="checkout-section active" id="contactSectionCheckout">
+                <div class="checkout-section active" id="contactSection">
                     <h3 class="checkout-section-title">
                         Contact Information
                         <span style="font-size: 14px; color: #666; font-weight: 400; display: block; margin-top: 5px;">Step 1 of 3</span>
@@ -3062,7 +2959,7 @@
     <footer class="footer" id="mainFooter">
         <div class="footer-content">
             <div>
-                <h3 class="footer-section-title">STREETZY</h3>
+                <h3 class="footer-section-title">IISVGE</h3>
                 <p style="color: #999; font-size: 16px; line-height: 1.7; margin-top: 15px;">
                     Premium streetwear essentials crafted for the modern individual. Quality materials, timeless designs.
                 </p>
@@ -3090,15 +2987,17 @@
         </div>
         
         <div class="footer-bottom">
-            <!-- Payment Icons (simplified without emojis and symbols) -->
+            <!-- Payment Icons from second code -->
             <div class="payment-icons">
-                <span class="payment-icon">VISA</span>
-                <span class="payment-icon">MASTERCARD</span>
-                <span class="payment-icon">AMEX</span>
-                <span class="payment-icon">PAYPAL</span>
+                <span class="payment-icon-footer">💳</span>
+                <span class="payment-icon-footer">P</span>
+                <span class="payment-icon-footer">🍎</span>
+                <span class="payment-icon-footer">G</span>
+                <span class="payment-icon-footer">S</span>
+                <span class="payment-icon-footer">银</span>
             </div>
             
-            <p>© 2026 STREETZY. All rights reserved.</p>
+            <p>© 2026 IISVGE. All rights reserved.</p>
         </div>
     </footer>
 
@@ -3250,7 +3149,7 @@
                 name: "Mike Johnson",
                 date: "14/01/26",
                 stars: "★★★★★",
-                text: "Great customer service and fast shipping! Will definitely order from STREETZY again.",
+                text: "Great customer service and fast shipping! Will definitely order from IISVGE again.",
                 verified: true,
                 helpful: 22
             },
@@ -3313,7 +3212,7 @@
         }
         
         function hideAllSections() {
-            const sections = ['heroSection', 'productsSection', 'reviewsSection', 'contactSection', 'searchSection', 'ordersSection'];
+            const sections = ['heroSection', 'productsSection', 'reviewsSection', 'searchSection', 'ordersSection'];
             sections.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
@@ -3414,16 +3313,6 @@
         function closeSearchPopup() {
             document.getElementById('searchPopup').classList.remove('active');
             document.body.classList.remove('no-scroll');
-            showHome(); // Automatically go back to homepage when closing search
-        }
-        
-        function showContact() {
-            hideAllSections();
-            document.getElementById('contactSection').style.display = 'block';
-            document.getElementById('mainFooter').style.display = 'block';
-            updateBottomNav('search'); // Use search icon for contact in bottom nav
-            updatePageHeader('Contact');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
         function showReviews() {
@@ -3886,7 +3775,7 @@
             const stepElement = document.getElementById(`step${step}`);
             if (stepElement) stepElement.classList.add('active');
             
-            const sectionId = step === 1 ? 'contactSectionCheckout' : step === 2 ? 'shippingSection' : 'paymentSection';
+            const sectionId = step === 1 ? 'contactSection' : step === 2 ? 'shippingSection' : 'paymentSection';
             const sectionElement = document.getElementById(sectionId);
             if (sectionElement) sectionElement.classList.add('active');
             
@@ -4338,15 +4227,15 @@
                 });
             }
             
-            // Bottom navigation - FIXED NAVIGATION
+            // Bottom navigation
             document.getElementById('bottomHome').addEventListener('click', showHome);
-            document.getElementById('bottomSearch').addEventListener('click', showSearch); // Fixed: Now goes to search, not contact
+            document.getElementById('bottomSearch').addEventListener('click', showSearchPopup);
             document.getElementById('bottomOrders').addEventListener('click', showOrders);
             document.getElementById('bottomReviews').addEventListener('click', showReviews);
             document.getElementById('bottomCart').addEventListener('click', openCart);
             
-            // Header actions - FIXED NAVIGATION
-            document.getElementById('searchBtn').addEventListener('click', showSearchPopup); // Fixed: Now shows search popup
+            // Header actions
+            document.getElementById('searchBtn').addEventListener('click', showSearchPopup);
             document.getElementById('cartBtn').addEventListener('click', openCart);
             document.getElementById('userBtn').addEventListener('click', function() {
                 document.getElementById('userDropdown').classList.toggle('active');
@@ -4405,18 +4294,6 @@
                 });
             }
             
-            // Header search functionality
-            const headerSearchInput = document.getElementById('headerSearchInput');
-            if (headerSearchInput) {
-                headerSearchInput.addEventListener('input', function() {
-                    updateSearchResults(this.value);
-                });
-                
-                headerSearchInput.addEventListener('focus', function() {
-                    showSearch();
-                });
-            }
-            
             // Search popup functionality
             const searchPopupInput = document.getElementById('searchPopupInput');
             if (searchPopupInput) {
@@ -4424,22 +4301,11 @@
                     updateSearchPopupResults(this.value);
                 });
                 
-                // Close popup on escape key and go to homepage
+                // Close popup on escape key
                 searchPopupInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape') {
                         closeSearchPopup();
-                        showHome();
                     }
-                });
-            }
-            
-            // Contact form
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    showToast('Message sent successfully! We will respond within 1-2 working days.');
-                    this.reset();
                 });
             }
             
@@ -4616,7 +4482,7 @@
                 showHome();
             });
             
-            // Footer links
+            // Footer links - Contact info from second code
             document.getElementById('footerAllProducts').addEventListener('click', function(e) {
                 e.preventDefault();
                 switchCategory('all');
@@ -4647,7 +4513,7 @@
             });
             document.getElementById('footerContact').addEventListener('click', function(e) {
                 e.preventDefault();
-                showContact();
+                alert('📞 Contact Information:\n\n• Email: support@iisvge.com\n• Phone: +1 (555) 123-4567\n• Hours: Mon-Fri 9AM-6PM EST\n\n📍 Based in New York City');
             });
             document.getElementById('footerReviews').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -4787,4 +4653,4 @@
         });
     </script>
 </body>
-                        </html>
+                                        </html>
