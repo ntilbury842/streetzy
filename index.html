@@ -70,6 +70,34 @@
             opacity: 0.7;
         }
         
+        /* ===== UPDATED SEARCH BAR ===== */
+        .header-search {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            display: none;
+        }
+        
+        .search-bar {
+            width: 100%;
+            padding: 10px 16px;
+            font-size: 14px;
+            border: 1px solid #e8e8e8;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.07);
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar:focus {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .header-search.visible {
+            display: block;
+        }
+        
         /* ===== PAGE HEADER (for non-home pages) ===== */
         .page-header {
             display: none;
@@ -1887,7 +1915,7 @@
             font-size: 14px;
         }
         
-        /* Payment icons from second code */
+        /* UPDATED: Payment icons without emojis and Chinese symbols */
         .payment-icons {
             display: flex;
             justify-content: center;
@@ -1897,9 +1925,10 @@
         }
         
         .payment-icon {
-            font-size: 24px;
+            font-size: 16px;
             color: #fff;
             opacity: 0.8;
+            font-weight: 600;
         }
         
         /* ===== RESPONSIVE ===== */
@@ -2124,7 +2153,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0,0,0,0.95);
+            background: rgba(0,0,0,0.7);
             display: none;
             align-items: center;
             justify-content: center;
@@ -2196,6 +2225,10 @@
         <div class="header-top">
             <div class="header-container">
                 <div class="logo" id="homeLogo">STREETZY</div>
+                
+                <div class="header-search" id="headerSearch">
+                    <input type="text" class="search-bar" id="headerSearchInput" placeholder="Search products...">
+                </div>
                 
                 <div class="header-actions">
                     <!-- Search Icon -->
@@ -3057,14 +3090,12 @@
         </div>
         
         <div class="footer-bottom">
-            <!-- Payment Icons from second code -->
+            <!-- Payment Icons (simplified without emojis and symbols) -->
             <div class="payment-icons">
-                <span class="payment-icon">💳</span>
-                <span class="payment-icon">P</span>
-                <span class="payment-icon">🍎</span>
-                <span class="payment-icon">G</span>
-                <span class="payment-icon">S</span>
-                <span class="payment-icon">银</span>
+                <span class="payment-icon">VISA</span>
+                <span class="payment-icon">MASTERCARD</span>
+                <span class="payment-icon">AMEX</span>
+                <span class="payment-icon">PAYPAL</span>
             </div>
             
             <p>© 2026 STREETZY. All rights reserved.</p>
@@ -3383,13 +3414,14 @@
         function closeSearchPopup() {
             document.getElementById('searchPopup').classList.remove('active');
             document.body.classList.remove('no-scroll');
+            showHome(); // Automatically go back to homepage when closing search
         }
         
         function showContact() {
             hideAllSections();
             document.getElementById('contactSection').style.display = 'block';
             document.getElementById('mainFooter').style.display = 'block';
-            updateBottomNav('search');
+            updateBottomNav('search'); // Use search icon for contact in bottom nav
             updatePageHeader('Contact');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -3534,7 +3566,7 @@
                             ${product.reviews ? `<div style="font-size: 14px; color: #666; margin-top: 8px;">★★★★★ ${product.reviews} reviews</div>` : ''}
                         </div>
                     </div>
-                `).join('');
+                `}).join('');
                 
                 // Add click events to product cards
                 document.querySelectorAll('.product-card').forEach(card => {
@@ -4308,13 +4340,13 @@
             
             // Bottom navigation - FIXED NAVIGATION
             document.getElementById('bottomHome').addEventListener('click', showHome);
-            document.getElementById('bottomSearch').addEventListener('click', showSearchPopup);
+            document.getElementById('bottomSearch').addEventListener('click', showSearch); // Fixed: Now goes to search, not contact
             document.getElementById('bottomOrders').addEventListener('click', showOrders);
             document.getElementById('bottomReviews').addEventListener('click', showReviews);
             document.getElementById('bottomCart').addEventListener('click', openCart);
             
-            // Header actions
-            document.getElementById('searchBtn').addEventListener('click', showSearchPopup);
+            // Header actions - FIXED NAVIGATION
+            document.getElementById('searchBtn').addEventListener('click', showSearchPopup); // Fixed: Now shows search popup
             document.getElementById('cartBtn').addEventListener('click', openCart);
             document.getElementById('userBtn').addEventListener('click', function() {
                 document.getElementById('userDropdown').classList.toggle('active');
@@ -4373,6 +4405,18 @@
                 });
             }
             
+            // Header search functionality
+            const headerSearchInput = document.getElementById('headerSearchInput');
+            if (headerSearchInput) {
+                headerSearchInput.addEventListener('input', function() {
+                    updateSearchResults(this.value);
+                });
+                
+                headerSearchInput.addEventListener('focus', function() {
+                    showSearch();
+                });
+            }
+            
             // Search popup functionality
             const searchPopupInput = document.getElementById('searchPopupInput');
             if (searchPopupInput) {
@@ -4380,10 +4424,11 @@
                     updateSearchPopupResults(this.value);
                 });
                 
-                // Close popup on escape key
+                // Close popup on escape key and go to homepage
                 searchPopupInput.addEventListener('keydown', function(e) {
                     if (e.key === 'Escape') {
                         closeSearchPopup();
+                        showHome();
                     }
                 });
             }
@@ -4742,4 +4787,4 @@
         });
     </script>
 </body>
-                                </html>
+    </html>
